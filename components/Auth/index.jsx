@@ -27,26 +27,28 @@ const Login = () => {
                             </Button>
                         </InputRightElement>
                     </InputGroup>
-                    <Button
-                        height='61px'
-                        width='246px'
-                        bgColor={'#0F4C75'}
-                        color='#fff'
-                        fontSize={'18px'}
-                        fontWeight='700'
-                        _hover={{ bg: '#0F4C75' }}
-                        _active={{
-                            bg: '#0F4C75',
-                            transform: 'scale(0.98)',
-                        }}
-                    >
-                        Login
-                    </Button>
+                    <Link href="#" style={{textDecoration:'none'}}>
+                        <Button
+                            height='61px'
+                            width='246px'
+                            bgColor={'#0F4C75'}
+                            color='#fff'
+                            fontSize={'18px'}
+                            fontWeight='700'
+                            _hover={{ bg: '#0F4C75' }}
+                            _active={{
+                                bg: '#0F4C75',
+                                transform: 'scale(0.98)',
+                            }}
+                        >
+                            Login
+                        </Button>
+                    </Link>
                     <Stack direction={'row'} spacing='4px'>
                         <Text color={'#1B262C'} fontSize='16px' fontWeight={'700'}>
                             Belum punya akun? 
                         </Text>
-                        <Link href='#' >
+                        <Link href='/Register' >
                             <Text color='#0F4C75' fontSize='16px' fontWeight={'700'}>Registrasi</Text>
                         </Link>
                     </Stack>

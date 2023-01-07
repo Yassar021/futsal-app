@@ -10,7 +10,7 @@ const LayoutRegister = ({pageTitle, children}) => {
 
             {/* content */}
             <Container maxW='6xl'>
-                <Box mt='140px'>
+                <Box mt='120px' pb='40px'>
                     {children}
                 </Box>
             </Container>
