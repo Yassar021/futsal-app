@@ -27,7 +27,7 @@ const Login = () => {
                             </Button>
                         </InputRightElement>
                     </InputGroup>
-                    <Link href="#" style={{textDecoration:'none'}}>
+                    <Link href="/Home" style={{textDecoration:'none'}}>
                         <Button
                             height='61px'
                             width='246px'
