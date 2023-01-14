@@ -1,29 +1,115 @@
-import { Box, Center, Flex, Image, Stack, Text } from "@chakra-ui/react"
+import { Box, Button, Center, Flex, Image, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Stack, Table, TableContainer, Tbody, Td, Text, Tr, useDisclosure } from "@chakra-ui/react"
 
 const CardMatch = () => {
+    const { isOpen, onOpen, onClose } = useDisclosure()
     return(
-        <Box borderRadius={'5px'} shadow='md' bgColor={'#fff'} width={'100%'} height='310px'>
-            <Box width={'100%'} height='60px' bgColor='#1B262C' py='16px'>
+        <Box borderRadius={'5px'} shadow='xl' bgColor={'#fff'} width={'100%'} height='310px'>
+            <Box borderRadius={'5px'} width={'100%'} height='60px' bgColor='#1B262C' py='16px'>
                 <Center>
                     <Text fontWeight={'500'} fontSize='18px' color='#fff'>Next Match</Text>
                 </Center>
             </Box>
             <Flex justifyContent={'center'} direction={'row'} pt='45px' pb='30px' gap='40px' >
+
                 <Flex direction={'row'} gap='24px'>
                     <Image width={'100px'} height='100px' src='fcb-team.png' alt='FCB' />
                     <Box my='auto'>
                         <Text mb='8px' fontSize={'18px'} fontWeight='700' color='#1B262C'>FC Barcelona</Text>
-                        <Text fontSize={'14px'} fontWeight='400' color='#959FA8'>View Bio Team</Text>
+                        <Button bgColor={'#fff'} onClick={onOpen}>
+                            <Text fontSize={'14px'} fontWeight='400' color='#959FA8'>View Bio Team</Text>
+                        </Button>
+                        <Modal isOpen={isOpen} onClose={onClose}>
+                            <ModalOverlay />
+                            <ModalContent>
+                                <ModalHeader>Biografi Team</ModalHeader>
+                            <ModalCloseButton />
+                            <ModalBody>
+                                <TableContainer>
+                                    <Table variant='unstyled'>
+                                        <Tbody py='10px'>
+                                            <Tr>
+                                                <Td>
+                                                    <Text fontSize={'16px'} fontWeight='600' color='#1B262C'>Name Team</Text>
+                                                    <Text my='20px' fontSize={'16px'} fontWeight='600' color='#1B262C'>Coach Name</Text>
+                                                    <Text mb='20px' fontSize={'16px'} fontWeight='600' color='#1B262C'>Address Team</Text>
+                                                    <Text fontSize={'16px'} fontWeight='600' color='#1B262C'>Biografi</Text>
+                                                </Td>
+                                                <Td>
+                                                    <Text fontSize={'16px'} fontWeight='500' color='#1B262C'>Fc Barcelona</Text>
+                                                    <Text my='20px'  fontSize={'16px'} fontWeight='500' color='#1B262C'>Pep Guardiola</Text>
+                                                    <Text mb='20px' fontSize={'16px'} fontWeight='500' color='#1B262C'>Lorem ipsum dolor sit amet consectetur.</Text>
+                                                    <Text fontSize={'16px'} fontWeight='500' color='#1B262C'> Lorem Ipsum has been the industry standard dummy text ever since the 1500s</Text>
+                                                </Td>
+                                            </Tr>
+                                        </Tbody>
+                                    </Table>
+                                </TableContainer>
+                            </ModalBody>
+
+                            <ModalFooter>
+                                <Button bgColor={'#EB5757'} color='#fff' mr={3} _hover={{ bg: '#EB5757' }}
+                                    _active={{
+                                        bg: '#EB5757',
+                                        transform: 'scale(0.98)',
+                                    }}  onClick={onClose}>
+                                    Close
+                                </Button>
+                            </ModalFooter>
+                            </ModalContent>
+                        </Modal>
                     </Box>
                 </Flex>
+
                 <Box my='auto'>
                     <Text fontSize={'14px'} fontWeight='500' color='#172C41'>VS</Text>
                 </Box>
+
                 <Flex direction={'row'} gap='24px'>
                     <Image width={'100px'} height='100px' src='rma-team.png' alt='rma' />
                     <Box my='auto'>
                         <Text mb='8px' fontSize={'18px'} fontWeight='700' color='#1B262C'>Real Madrid</Text>
-                        <Text fontSize={'14px'} fontWeight='400' color='#959FA8'>View Bio Team</Text>
+                        <Button bgColor={'#fff'} onClick={onOpen}>
+                            <Text fontSize={'14px'} fontWeight='400' color='#959FA8'>View Bio Team</Text>
+                        </Button>
+                        <Modal isOpen={isOpen} onClose={onClose}>
+                            <ModalOverlay />
+                            <ModalContent>
+                                <ModalHeader>Biografi Team</ModalHeader>
+                            <ModalCloseButton />
+                            <ModalBody>
+                                <TableContainer>
+                                    <Table variant='unstyled'>
+                                        <Tbody py='10px'>
+                                            <Tr>
+                                                <Td>
+                                                    <Text fontSize={'16px'} fontWeight='600' color='#1B262C'>Name Team</Text>
+                                                    <Text my='20px' fontSize={'16px'} fontWeight='600' color='#1B262C'>Coach Name</Text>
+                                                    <Text mb='20px' fontSize={'16px'} fontWeight='600' color='#1B262C'>Address Team</Text>
+                                                    <Text fontSize={'16px'} fontWeight='600' color='#1B262C'>Biografi</Text>
+                                                </Td>
+                                                <Td>
+                                                    <Text fontSize={'16px'} fontWeight='500' color='#1B262C'>Real Madrid</Text>
+                                                    <Text my='20px'  fontSize={'16px'} fontWeight='500' color='#1B262C'>Jose Mourinho</Text>
+                                                    <Text mb='20px' fontSize={'16px'} fontWeight='500' color='#1B262C'>Lorem ipsum dolor sit amet consectetur.</Text>
+                                                    <Text fontSize={'16px'} fontWeight='500' color='#1B262C'> Lorem Ipsum has been the industry standard dummy text ever since the 1500s</Text>
+                                                </Td>
+                                            </Tr>
+                                        </Tbody>
+                                    </Table>
+                                </TableContainer>
+                            </ModalBody>
+
+                            <ModalFooter>
+                                <Button bgColor={'#EB5757'} color='#fff' _hover={{ bg: '#EB5757' }}
+                                    _active={{
+                                        bg: '#EB5757',
+                                        transform: 'scale(0.98)',
+                                    }}  mr={3} onClick={onClose}>
+                                    Close
+                                </Button>
+                            </ModalFooter>
+                            </ModalContent>
+                        </Modal>
                     </Box>
                 </Flex>
             </Flex>

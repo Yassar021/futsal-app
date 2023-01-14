@@ -8,12 +8,12 @@ const Navbar = () => {
                     <Flex direction={'row'} gap='120px'>
                         <Image width={'60px'} height='60px' borderRadius={'100%'} src='/futsal-ico.png' alt='Icon Futsal' />
                         <Stack my='auto' direction={'row'} spacing='40px'>
-                            <Link href="#">
+                            <Link href="/Home">
                                 <Text fontSize={'18px'} fontWeight='500' color={'#1B262C'}>Home</Text>
                             </Link>
-                            <Link href="#">
+                            <Link href="/Inbox">
                                 <Text fontSize={'18px'} fontWeight='500' color={'#A0A8B1'}>Inbox</Text>
-                            </Link><Link href="#">
+                            </Link><Link href="/FindTeam">
                                 <Text fontSize={'18px'} fontWeight='500' color={'#A0A8B1'}>Find Team</Text>
                             </Link><Link href="#">
                                 <Text fontSize={'18px'} fontWeight='500' color={'#A0A8B1'}>Schedule</Text>
