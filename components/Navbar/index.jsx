@@ -15,7 +15,7 @@ const Navbar = () => {
                                 <Text fontSize={'18px'} fontWeight='500' color={'#A0A8B1'}>Inbox</Text>
                             </Link><Link href="/FindTeam">
                                 <Text fontSize={'18px'} fontWeight='500' color={'#A0A8B1'}>Find Team</Text>
-                            </Link><Link href="#">
+                            </Link><Link href="/Schedule">
                                 <Text fontSize={'18px'} fontWeight='500' color={'#A0A8B1'}>Schedule</Text>
                             </Link>
                             <Link href="#">
