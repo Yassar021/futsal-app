@@ -1,11 +1,11 @@
-import { Box, Container, Flex, Image, Link, Stack, Text } from "@chakra-ui/react"
+import { Box, Button, Container, Flex, Image, Link, Stack, Text } from "@chakra-ui/react"
 
 const Navbar = () => {
     return (
         <>
             <Box h='100px' w='100%' py='20px'>
                 <Container maxW={'6xl'}>
-                    <Flex direction={'row'} gap='120px'>
+                    <Flex direction={'row'} gap='120px' justifyContent={'space-between'}>
                         <Image width={'60px'} height='60px' borderRadius={'100%'} src='/futsal-ico.png' alt='Icon Futsal' />
                         <Stack my='auto' direction={'row'} spacing='40px'>
                             <Link href="/Home">
@@ -22,6 +22,13 @@ const Navbar = () => {
                                 <Text fontSize={'18px'} fontWeight='500' color={'#A0A8B1'}>History</Text>
                             </Link>
                         </Stack>
+                        <Box my='auto'>
+                            <Link href="/">
+                                <Button colorScheme='teal' size='sm'>
+                                    Keluar
+                                </Button>
+                            </Link>
+                        </Box>
                     </Flex>
                 </Container>
             </Box>
