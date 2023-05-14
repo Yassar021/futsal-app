@@ -1,7 +1,7 @@
 import { Box, Container, Flex, Image, Link, Stack, Text } from "@chakra-ui/react"
 
 const Navbar = () => {
-    return(
+    return (
         <>
             <Box h='100px' w='100%' py='20px'>
                 <Container maxW={'6xl'}>
@@ -18,14 +18,14 @@ const Navbar = () => {
                             </Link><Link href="/Schedule">
                                 <Text fontSize={'18px'} fontWeight='500' color={'#A0A8B1'}>Schedule</Text>
                             </Link>
-                            <Link href="#">
+                            <Link href="/History">
                                 <Text fontSize={'18px'} fontWeight='500' color={'#A0A8B1'}>History</Text>
                             </Link>
                         </Stack>
                     </Flex>
                 </Container>
             </Box>
-        
+
         </>
     )
 }
