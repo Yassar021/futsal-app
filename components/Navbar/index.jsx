@@ -21,10 +21,18 @@ const Navbar = () => {
                             <Link href="/History">
                                 <Text fontSize={'18px'} fontWeight='500' color={'#A0A8B1'}>History</Text>
                             </Link>
+                            <Link href="/Venue">
+                                <Text fontSize={'18px'} fontWeight='500' color={'#A0A8B1'}>Venue</Text>
+                            </Link>
                         </Stack>
                         <Box my='auto'>
                             <Link href="/">
-                                <Button colorScheme='teal' size='sm'>
+                                <Button bgColor={'#0F4C75'} color='#fff' size='md' _hover={{ bg: '#0F4C75' }}
+                                    _active={{
+                                        bg: '#0F4C75',
+                                        transform: 'scale(0.98)',
+                                        borderColor: '#0F4C75',
+                                    }}>
                                     Keluar
                                 </Button>
                             </Link>

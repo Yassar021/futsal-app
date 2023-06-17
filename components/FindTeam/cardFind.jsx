@@ -77,7 +77,8 @@ const CardFind = () => {
                                         transform: 'scale(0.98)',
                                     }} mr={3} onClick={onClose}>
                                     Cancel
-                                </Button><Button bgColor={'#2DCC70'} color='#fff' _hover={{ bg: '#2DCC70' }}
+                                </Button>
+                                <Button bgColor={'#2DCC70'} color='#fff' _hover={{ bg: '#2DCC70' }}
                                     _active={{
                                         bg: '#2DCC70',
                                         transform: 'scale(0.98)',
