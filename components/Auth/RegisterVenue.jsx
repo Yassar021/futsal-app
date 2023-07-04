@@ -2,20 +2,19 @@ import { Button, Flex, Input, InputGroup, InputRightElement, Link, Stack, Text, 
 import { useState } from "react"
 import LayoutRegister from "../../layout/LayoutRegister"
 
-const Register = () => {
+const RegisterVenue = () => {
     const [show, setShow] = useState(false)
     const handleClick = () => setShow(!show)
-
     return(
-        <LayoutRegister pageTitle={'Register Tim'}>
+        <LayoutRegister pageTitle={'Register Venue'}>
             <Flex direction={'column'} gap='20px' alignItems={'center'}>
-                <Text mb='20px' fontSize={{base:'24px',sm:'32px',md:'40px'}} fontWeight='700' color={'#000'}>Registrasi Tim</Text>
+                <Text mb='20px' fontSize={{base:'24px',sm:'32px',md:'40px'}} fontWeight='700' color={'#000'}>Registrasi Venue</Text>
 
                 <Stack direction={{base:'column',md:'row'}} spacing='40px'>
                     <Stack direction={'column'} spacing='20px'>
                         <Text fontSize={'24px'} fontWeight='500'>Informasi Umum</Text>
 
-                        <Input width={{base:'280px',md:'350px'}} height='60px' borderColor={'2px solid #1B262C'} focusBorderColor='#1B262C' placeholder='Nama Tim' />
+                        <Input width={{base:'280px',md:'350px'}} height='60px' borderColor={'2px solid #1B262C'} focusBorderColor='#1B262C' placeholder='Nama Venue' />
                         <Input width={{base:'280px',md:'350px'}} height='60px' borderColor={'2px solid #1B262C'} focusBorderColor='#1B262C' placeholder='Alamat' />
                         <Input type={'date'} width={{base:'280px',md:'350px'}} height='60px' borderColor={'2px solid #1B262C'} focusBorderColor='#1B262C' placeholder='Tanggal Berdiri' />
                         <Textarea height={'140px'} placeholder='Here is a sample placeholder'borderColor={'2px solid #1B262C'} focusBorderColor='#1B262C' />
@@ -81,4 +80,4 @@ const Register = () => {
     )
 }
 
-export default Register
+export default RegisterVenue

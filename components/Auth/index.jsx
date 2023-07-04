@@ -1,4 +1,4 @@
-import { Box, Button, Center, Flex, Image, Input, InputGroup, InputRightElement, Link, Stack, Text } from "@chakra-ui/react"
+import { Box, Button, Center, Flex, HStack, Image, Input, InputGroup, InputRightElement, Link, Stack, Text, VStack } from "@chakra-ui/react"
 import { useState } from "react"
 import LayoutLogin from "../../layout/LayoutLogin"
 
@@ -44,13 +44,19 @@ const Login = () => {
                             Login
                         </Button>
                     </Link>
-                    <Stack direction={'row'} spacing='4px'>
-                        <Text color={'#1B262C'} fontSize='16px' fontWeight={'700'}>
+                    <Stack direction={'column'} spacing='4px'>
+                        <Text textAlign={'center'} color={'#1B262C'} fontSize='16px' fontWeight={'700'}>
                             Belum punya akun? 
                         </Text>
-                        <Link href='/Register' >
-                            <Text color='#0F4C75' fontSize='16px' fontWeight={'700'}>Registrasi</Text>
-                        </Link>
+                        <HStack spacing='4px'>
+                            <Link href='/Register' >
+                                <Text color='#0F4C75' fontSize='16px' fontWeight={'700'}>Registrasi Tim</Text>
+                            </Link>
+                            <Text>||</Text>
+                            <Link href='/AdminVenue' >
+                                <Text color='#0F4C75' fontSize='16px' fontWeight={'700'}>Registrasi Venue</Text>
+                            </Link>
+                        </HStack>
                     </Stack>
                     
                 </Stack>
