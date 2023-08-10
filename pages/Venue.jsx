@@ -1,4 +1,4 @@
-import Venue from "../components/Venue"
+import Venue from "../components/Venue/index"
 
 const VenuePage = () => {
     return (
