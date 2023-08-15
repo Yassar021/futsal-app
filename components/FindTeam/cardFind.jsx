@@ -1,61 +1,147 @@
-import { Box, Button, Center, Flex, Input, Link, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Select, Stack, Table, TableContainer, Tbody, Td, Text, Tr, useDisclosure } from "@chakra-ui/react"
+import {
+  Box,
+  Button,
+  Center,
+  Flex,
+  Input,
+  Link,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
+  Select,
+  Stack,
+  Table,
+  TableContainer,
+  Tbody,
+  Td,
+  Text,
+  Tr,
+  useDisclosure,
+} from "@chakra-ui/react";
 
-const CardFind = () => {
-    const { isOpen, onOpen, onClose } = useDisclosure()
+const CardFind = ({ id, name, description }) => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
-    return (
-        <Box mb='60px' borderRadius={'5px'} shadow='xl' bgColor={'#fff'} width={'100%'} height='350px'>
-            <Box borderRadius={'5px'} width={'100%'} height='60px' bgColor='#1B262C' py='16px'>
-                <Center>
-                    <Text fontWeight={'500'} fontSize='18px' color='#fff'>Penantang</Text>
-                </Center>
-            </Box>
-            <Flex alignItems={'center'} direction={'column'} mt='20px' gap='30px' >
-                <Text fontSize={'18px'} fontWeight='600' color='#1B262C'>Valencia CF</Text>
-                <Text width={'242px'} fontSize={'18px'} fontWeight='400' color='#A0A8B1'> Lorem Ipsum has been the industrys standard dummy text ever since the 1500s</Text>
-                <Button bgColor={'#0F4C75'} width='140px' height={'40px'} onClick={onOpen} _hover={{ bg: '#0F4C75' }}
-                    _active={{
-                        bg: '#0F4C75',
-                        transform: 'scale(0.98)',
-                    }}>
-                    <Text fontSize={'14px'} fontWeight='500' color='#fff'>View Detail</Text>
-                </Button>
-                <Modal isOpen={isOpen} onClose={onClose} size={'lg'}>
-                    <ModalOverlay />
-                    <ModalContent>
-                        <ModalHeader>Valencia CF vs FC Barcelona</ModalHeader>
-                        <ModalCloseButton />
-                        <ModalBody>
-                            <TableContainer>
-                                <Table variant='unstyled'>
-                                    <Tbody py='10px'>
-                                        <Tr>
-                                            <Td>
-                                                <Text fontSize={'16px'} fontWeight='600' color='#1B262C'>Date</Text>
-                                                <Text my='20px' fontSize={'16px'} fontWeight='600' color='#1B262C'>Time</Text>
-                                                <Text mb='20px' fontSize={'16px'} fontWeight='600' color='#1B262C'>Location</Text>
-                                                <Text mb='20px' fontSize={'16px'} fontWeight='600' color='#1B262C'>Message</Text>
-                                            </Td>
-                                            <Td>
-                                                {/* <Text fontSize={'16px'} fontWeight='500' color='#1B262C'>13 December 2022</Text> */}
-                                                {/* <Text my='20px' fontSize={'16px'} fontWeight='500' color='#1B262C'>16:00 - 18:00 WITA</Text> */}
-                                                {/* <Text mb='20px' fontSize={'16px'} fontWeight='500' color='#1B262C'>Let have a friendly match</Text> */}
-                                                {/* <Text mb='20px' fontSize={'16px'} fontWeight='500' color='#1B262C'>Lorem ipsum dolor sit amet consectetur.</Text> */}
-                                                <Input type="date" placeholder='Tentukan Hari' /> <br />
-                                                <Input my={'6px'} type="time" placeholder='Tentukan Waktu' />
-                                                <Select placeholder='Tentukan Tempat'>
-                                                    <option value='option1'>Lapangan 1</option>
-                                                    <option value='option2'>Lapangan 2</option>
-                                                    <option value='option3'>Lapangan 3</option>
-                                                </Select>
-                                                <Input placeholder='Masukkan pesan' /> <br />
-
-                                            </Td>
-                                        </Tr>
-                                    </Tbody>
-                                </Table>
-                            </TableContainer>
-                            {/* <Stack direction={'row'} spacing='6px'>
+  return (
+    <Box
+      mb="60px"
+      borderRadius={"5px"}
+      shadow="xl"
+      bgColor={"#fff"}
+      width={"100%"}
+      height="350px"
+    >
+      <Box
+        borderRadius={"5px"}
+        width={"100%"}
+        height="60px"
+        bgColor="#1B262C"
+        py="16px"
+      >
+        <Center>
+          <Text fontWeight={"500"} fontSize="18px" color="#fff">
+            Penantang
+          </Text>
+        </Center>
+      </Box>
+      <Flex alignItems={"center"} direction={"column"} mt="20px" gap="30px">
+        <Text fontSize={"18px"} fontWeight="600" color="#1B262C">
+          {name}
+        </Text>
+        <Text
+          width={"242px"}
+          fontSize={"18px"}
+          fontWeight="400"
+          color="#A0A8B1"
+        >
+          {" "}
+          {description}
+        </Text>
+        <Button
+          bgColor={"#0F4C75"}
+          width="140px"
+          height={"40px"}
+          onClick={onOpen}
+          _hover={{ bg: "#0F4C75" }}
+          _active={{
+            bg: "#0F4C75",
+            transform: "scale(0.98)",
+          }}
+        >
+          <Text fontSize={"14px"} fontWeight="500" color="#fff">
+            View Detail
+          </Text>
+        </Button>
+        <Modal isOpen={isOpen} onClose={onClose} size={"lg"}>
+          <ModalOverlay />
+          <ModalContent>
+            <ModalHeader>Valencia CF vs FC Barcelona</ModalHeader>
+            <ModalCloseButton />
+            <ModalBody>
+              <TableContainer>
+                <Table variant="unstyled">
+                  <Tbody py="10px">
+                    <Tr>
+                      <Td>
+                        <Text
+                          fontSize={"16px"}
+                          fontWeight="600"
+                          color="#1B262C"
+                        >
+                          Date
+                        </Text>
+                        <Text
+                          my="20px"
+                          fontSize={"16px"}
+                          fontWeight="600"
+                          color="#1B262C"
+                        >
+                          Time
+                        </Text>
+                        <Text
+                          mb="20px"
+                          fontSize={"16px"}
+                          fontWeight="600"
+                          color="#1B262C"
+                        >
+                          Location
+                        </Text>
+                        <Text
+                          mb="20px"
+                          fontSize={"16px"}
+                          fontWeight="600"
+                          color="#1B262C"
+                        >
+                          Message
+                        </Text>
+                      </Td>
+                      <Td>
+                        {/* <Text fontSize={'16px'} fontWeight='500' color='#1B262C'>13 December 2022</Text> */}
+                        {/* <Text my='20px' fontSize={'16px'} fontWeight='500' color='#1B262C'>16:00 - 18:00 WITA</Text> */}
+                        {/* <Text mb='20px' fontSize={'16px'} fontWeight='500' color='#1B262C'>Let have a friendly match</Text> */}
+                        {/* <Text mb='20px' fontSize={'16px'} fontWeight='500' color='#1B262C'>Lorem ipsum dolor sit amet consectetur.</Text> */}
+                        <Input type="date" placeholder="Tentukan Hari" /> <br />
+                        <Input
+                          my={"6px"}
+                          type="time"
+                          placeholder="Tentukan Waktu"
+                        />
+                        <Select placeholder="Tentukan Tempat">
+                          <option value="option1">Lapangan 1</option>
+                          <option value="option2">Lapangan 2</option>
+                          <option value="option3">Lapangan 3</option>
+                        </Select>
+                        <Input placeholder="Masukkan pesan" /> <br />
+                      </Td>
+                    </Tr>
+                  </Tbody>
+                </Table>
+              </TableContainer>
+              {/* <Stack direction={'row'} spacing='6px'>
                                     <Text fontSize={'16px'} fontWeight='500' color='#1B262C'>Negotiate Date on </Text>
                                     <Link href='#'>
                                         <Stack direction={'row'}>
@@ -67,32 +153,42 @@ const CardFind = () => {
                                         </Stack> 
                                     </Link>  
                                 </Stack> */}
-                        </ModalBody>
+            </ModalBody>
 
-                        <ModalFooter>
-                            <Stack direction={'row'}>
-                                <Button bgColor={'#EB5757'} color='#fff' _hover={{ bg: '#EB5757' }}
-                                    _active={{
-                                        bg: '#EB5757',
-                                        transform: 'scale(0.98)',
-                                    }} mr={3} onClick={onClose}>
-                                    Cancel
-                                </Button>
-                                <Button bgColor={'#2DCC70'} color='#fff' _hover={{ bg: '#2DCC70' }}
-                                    _active={{
-                                        bg: '#2DCC70',
-                                        transform: 'scale(0.98)',
-                                    }} mr={3}>
-                                    Send
-                                </Button>
-                            </Stack>
-                        </ModalFooter>
-                    </ModalContent>
-                </Modal>
+            <ModalFooter>
+              <Stack direction={"row"}>
+                <Button
+                  bgColor={"#EB5757"}
+                  color="#fff"
+                  _hover={{ bg: "#EB5757" }}
+                  _active={{
+                    bg: "#EB5757",
+                    transform: "scale(0.98)",
+                  }}
+                  mr={3}
+                  onClick={onClose}
+                >
+                  Cancel
+                </Button>
+                <Button
+                  bgColor={"#2DCC70"}
+                  color="#fff"
+                  _hover={{ bg: "#2DCC70" }}
+                  _active={{
+                    bg: "#2DCC70",
+                    transform: "scale(0.98)",
+                  }}
+                  mr={3}
+                >
+                  Send
+                </Button>
+              </Stack>
+            </ModalFooter>
+          </ModalContent>
+        </Modal>
+      </Flex>
+    </Box>
+  );
+};
 
-            </Flex>
-        </Box>
-    )
-}
-
-export default CardFind
+export default CardFind;

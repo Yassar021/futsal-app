@@ -1,5 +1,5 @@
 import { request, ClientError, gql } from 'graphql-request'
-import { TVanue } from "../types/type";
+import { TMatchHistory, TTeam, TVanue } from "../types/type";
 
 const BASE_URL = "http://localhost:8080/v1/graphql";
 
@@ -31,4 +31,42 @@ export const fetchVanues = async (): Promise<{vanue: TVanue[]}> => {
         `
     })
     return response.data as {vanue: TVanue[]}
+}
+
+export const fetchTeams = async (): Promise<{team: TTeam[]}> => {
+    const response = await graphqlRequest({
+        query: gql`
+        {
+            team {
+                id
+                name
+                description
+            }
+        }
+        `
+    })
+    return response.data as {team: TTeam[]}
+}
+
+export const fetchMatchHistory = async (): Promise<{match: TMatchHistory[]}> => {
+    const response = await graphqlRequest({
+        query: gql`
+        {
+            match {
+                home_team {
+                  name
+                }
+                away_team {
+                  name
+                }
+                match_results {
+                  away
+                  home
+                  created_at
+                }
+            }
+        }
+        `
+    })
+    return response.data as {match: TMatchHistory[]}
 }

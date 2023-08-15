@@ -1,9 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import vanue from "./reducers/vanue";
+import team from "./reducers/team";
+import matchHistory from "./reducers/matchHistory";
 
 export const store = configureStore({
     reducer: {
-        vanue
+        vanue,
+        team,
+        matchHistory,
     }
 })
 
