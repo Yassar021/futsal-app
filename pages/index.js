@@ -1,9 +1,9 @@
-import Auth from "../components/Auth"
+import Homepage from "../components/Homepage"
 
 const Home = () => {
   return(
     <>
-      <Auth />
+      <Homepage />
     </>
   )
 }

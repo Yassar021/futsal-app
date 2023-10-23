@@ -1,8 +1,20 @@
 import { Box, Container } from "@chakra-ui/react";
 import Head from "next/head";
 import Navbar from "../components/Navbar";
+import { useUser } from "../services/AuthProvider/hooks";
+import { useEffect } from "react";
+import { useRouter } from "next/router";
 
 const LayoutUser = ({ pageTitle, children }) => {
+  const user = useUser();
+  const router = useRouter()
+
+  useEffect(() => {
+    if (!user.isLogged) {
+      router.push("/Login")
+    }
+  },[user])
+
   return (
     <>
       <Head>
