@@ -8,11 +8,17 @@ export function useLogin() {
     return ctx.login;
 }
 
+export function useLogout() {
+    const ctx = useContext(AuthContext);
+
+    return ctx.logout
+}
+
 export function useUser(): UserSession {
     const ctx = useContext(AuthContext);
 
     return {
         isLogged: ctx.isLogged,
-        token: ctx.token
+        token: ctx.token,
     }
 }

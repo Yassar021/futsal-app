@@ -1,4 +1,8 @@
-export function baseFetcher(url: RequestInfo | URL, config: RequestInit) {
+import { API_BASE_URL } from "../config";
+
+
+export function baseFetcher(path: string, config: RequestInit = {method: "GET"}) {
+    const token = localStorage.getItem("token");
 
     const requestHeader = config.headers ?? {}
     const headers = {
@@ -6,7 +10,11 @@ export function baseFetcher(url: RequestInfo | URL, config: RequestInit) {
         ...requestHeader
     }
 
-    return fetch(url, {
+    if (token) {
+        headers["Authorization"] = "Bearer " + token
+    }
+
+    return fetch(`${API_BASE_URL}${path}`, {
         ...config,
         headers: headers
     }).then(res => res.json())
