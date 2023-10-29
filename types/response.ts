@@ -13,3 +13,8 @@ export interface PaginatedResponse<T> {
     next_page_url: string | null;
     prev_page_url: string | null;
 }
+
+export interface CreateSuccess<T> {
+    status: boolean;
+    data: T
+}

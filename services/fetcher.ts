@@ -7,6 +7,7 @@ export function baseFetcher(path: string, config: RequestInit = {method: "GET"})
     const requestHeader = config.headers ?? {}
     const headers = {
         "accept": "application/json",
+        "content-type": "application/json",
         ...requestHeader
     }
 
