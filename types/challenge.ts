@@ -21,6 +21,7 @@ export type Challenge = {
     date_start: string;
     date_end: string;
     venue: VenueInfo;
+    status: ChallengeStatus;
 }
 
 export type ChallengeItem = {

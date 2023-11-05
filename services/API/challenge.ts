@@ -26,3 +26,15 @@ export async function deleteChallenge(challenge_id: number | string): Promise<vo
         method: "DELETE"
     });
 }
+
+export async function acceptChallenge(challenge_id: number | string): Promise<void> {
+    return baseFetcher(`/challenge/${challenge_id}/accept`,{
+        method: "PUT"
+    });
+}
+
+export async function rejectChallenge(challenge_id: number | string): Promise<void> {
+    return baseFetcher(`/challenge/${challenge_id}/reject`,{
+        method: "PUT"
+    });
+}

@@ -1,12 +1,13 @@
 import { Box, Button, Center, Flex, Image, Link, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Stack, Table, TableContainer, Tbody, Td, Text, Tr, useDisclosure } from "@chakra-ui/react"
 import React from "react";
-import { ChallengeItem, ChallengeType } from "../../types/challenge";
+import { ChallengeItem, ChallengeStatus, ChallengeType } from "../../types/challenge";
+import { getStatusColor, getStatusName } from "../../utils/statuses";
 
 type Props = ChallengeItem & {
     onSelect?: () => void;
 }
 
-const CardInbox = ({ type, team, message, status, id, onSelect = () => {} }: Props) => {
+const CardInbox = ({ type, team, message, status, id, onSelect = () => { } }: Props) => {
 
     return (
         <Box mb='60px' borderRadius={'5px'} shadow='xl' bgColor={'#fff'} width={'100%'} height='350px'>
@@ -15,9 +16,9 @@ const CardInbox = ({ type, team, message, status, id, onSelect = () => {} }: Pro
                     <Text fontWeight={'500'} fontSize='18px' color='#fff'>
                         {
                             type === ChallengeType.RECEIVED ?
-                            "Penantang"
-                            :
-                            "Ditantang"
+                                "Penantang"
+                                :
+                                "Ditantang"
                         }
                     </Text>
                 </Center>
@@ -33,15 +34,30 @@ const CardInbox = ({ type, team, message, status, id, onSelect = () => {} }: Pro
                     <Text fontSize={'14px'} fontWeight='500' color='#fff'>View Detail</Text>
                 </Button>
                 <Stack direction={'row'} spacing='6px'>
-                    <Stack>
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="10" cy="10" r="10" fill="#FFA600" />
-                        </svg>
-                    </Stack>
-                    <Text fontWeight={'500'} fontSize='14px'>Pending</Text>
+                    <Status status={status} />
                 </Stack>
             </Flex>
         </Box>
+    )
+}
+
+
+type StatusProps = {
+    status: ChallengeStatus
+}
+
+function Status({ status }: StatusProps) {
+    const name = getStatusName(status);
+    const color = getStatusColor(status);
+    return (
+        <>
+            <Stack>
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="10" cy="10" r="10" fill={color} />
+                </svg>
+            </Stack>
+            <Text fontWeight={'500'} fontSize='14px'>{name}</Text>
+        </>
     )
 }
 

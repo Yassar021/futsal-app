@@ -8,7 +8,7 @@ const Inbox = () => {
     return (
         <LayoutUser pageTitle={'Inbox'}>
             <Container maxW='6xl'>
-                <Tabs isFitted >
+                <Tabs isFitted isLazy>
                     <TabList>
                         <Tab>Tantangan Masuk</Tab>
                         <Tab>Tantangan Keluar</Tab>

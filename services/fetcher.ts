@@ -18,5 +18,11 @@ export function baseFetcher(path: string, config: RequestInit = {method: "GET"})
     return fetch(`${API_BASE_URL}${path}`, {
         ...config,
         headers: headers
-    }).then(res => res.json())
+    }).then(res => {
+        if (res.status === 204) {
+            return true;
+        }
+
+        return res.json();
+    })
 }
