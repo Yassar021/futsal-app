@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import accountReducer from "./reducers/account";
 import findTeams from "./reducers/findTeams";
+import challengeSent from "./reducers/challengeSent";
 
 export const store = configureStore({
     reducer: {
         account: accountReducer,
-        findTeams: findTeams
+        findTeams: findTeams,
+        challengeSent: challengeSent
     }
 })
 

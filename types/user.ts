@@ -10,8 +10,14 @@ type VenueUserInfo = {
     data: VenueInfo
 }
 
-type VenueInfo = {
-
+export type VenueInfo = {
+    id: number,
+    name: string,
+    address: string,
+    est_year: number,
+    owner_name: string,
+    phone: string,
+    profile_picture: string;
 }
 
 type TeamUserInfo = {

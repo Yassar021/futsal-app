@@ -9,3 +9,5 @@ export interface CreateChallengeRequest {
     field_id: string;
     message: string;
 }
+
+export type UpdateChallengeRequest = Omit<CreateChallengeRequest, "team_id">;
