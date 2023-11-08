@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import { AccountType } from '../../types/user';
 import { getAccountInfo } from '../API/team';
+import { Spinner } from '@chakra-ui/react';
 
 const AuthProvider = ({ children }) => {
     const [isLogged,setLogged] = useState(false)
@@ -64,6 +65,10 @@ const AuthProvider = ({ children }) => {
             dispatch(setFetchingDone())
         }
     },[])
+
+    if (isUserFetching) {
+        return <Spinner />
+    }
 
     return (
         <AuthContext.Provider value={contextValue}>

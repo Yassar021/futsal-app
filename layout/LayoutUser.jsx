@@ -1,4 +1,4 @@
-import { Box, Container } from "@chakra-ui/react";
+import { Box, Container, Spinner } from "@chakra-ui/react";
 import Head from "next/head";
 import Navbar from "../components/Navbar";
 import { useUser } from "../services/AuthProvider/hooks";
@@ -15,13 +15,17 @@ const LayoutUser = ({ pageTitle, children }) => {
     }
   },[user])
 
+
+  if (!user.isLogged) {
+    return <Spinner />
+  }
+
   return (
     <>
       <Head>
         <title>Matchmaking | {pageTitle}</title>
       </Head>
 
-      {/* content */}
       <Navbar />
       <Box bgColor={"#F3F4F7"} py="60px" height={"100vh"}>
         {children}
