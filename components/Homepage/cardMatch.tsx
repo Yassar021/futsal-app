@@ -1,7 +1,33 @@
+import React, { useMemo } from "react";
 import { Box, Button, Center, Flex, Image, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Stack, Table, TableContainer, Tbody, Td, Text, Tr, useDisclosure } from "@chakra-ui/react"
+import { TeamInfo, VenueInfo } from "../../types/user";
+import dayjs from "dayjs";
 
-const CardMatch = () => {
+
+type Props = {
+    home_team: TeamInfo,
+    away_team: TeamInfo,
+    venue: VenueInfo,
+    date: string;
+}
+
+
+const CardMatch = ({away_team, home_team, venue ,date}: Props) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
+    const { isOpen: homeBioIsOpen, onOpen: homeBioOnOpen, onClose: homeOnClose } = useDisclosure();
+    const { isOpen: awayBioIsOpen, onOpen: awayBioOnOpen, onClose: awayOnClose } = useDisclosure();
+
+    const matchDateTime = useMemo(() => {
+        const dateObj = dayjs(date);
+        const matchDate = dateObj.format("DD MMMM YYYY");
+        const matchTime = dateObj.format("HH:mm");
+
+        return {
+            date: matchDate,
+            time: matchTime
+        }
+    },[date])
+
     return (
         <Box borderRadius={'5px'} shadow='xl' bgColor={'#fff'} width={'100%'} height='310px'>
             <Box borderRadius={'5px'} width={'100%'} height='60px' bgColor='#1B262C' py='16px'>
@@ -14,11 +40,11 @@ const CardMatch = () => {
                 <Flex direction={'row'} gap='24px'>
                     <Image width={'100px'} height='100px' src='fcb-team.png' alt='FCB' />
                     <Box my='auto'>
-                        <Text mb='8px' fontSize={'18px'} fontWeight='700' color='#1B262C'>FC Barcelona</Text>
-                        <Button bgColor={'#fff'} onClick={onOpen}>
+                        <Text mb='8px' fontSize={'18px'} fontWeight='700' color='#1B262C'>{home_team.name}</Text>
+                        <Button bgColor={'#fff'} onClick={homeBioOnOpen}>
                             <Text fontSize={'14px'} fontWeight='400' color='#959FA8'>View Bio Team</Text>
                         </Button>
-                        <Modal isOpen={isOpen} onClose={onClose} sizes={'lg'}>
+                        <Modal isOpen={homeBioIsOpen} onClose={homeOnClose} size={'lg'}>
                             <ModalOverlay />
                             <ModalContent>
                                 <ModalHeader>Biografi Team</ModalHeader>
@@ -29,16 +55,16 @@ const CardMatch = () => {
                                             <Tbody py='10px'>
                                                 <Tr>
                                                     <Td>
-                                                        <Text fontSize={'16px'} fontWeight='600' color='#1B262C'>Name Team</Text>
-                                                        <Text my='20px' fontSize={'16px'} fontWeight='600' color='#1B262C'>Coach Name</Text>
-                                                        <Text mb='20px' fontSize={'16px'} fontWeight='600' color='#1B262C'>Address Team</Text>
+                                                        <Text fontSize={'16px'} fontWeight='600' color='#1B262C'>Nama</Text>
+                                                        <Text my='20px' fontSize={'16px'} fontWeight='600' color='#1B262C'>Pelatih</Text>
+                                                        <Text mb='20px' fontSize={'16px'} fontWeight='600' color='#1B262C'>Alamat</Text>
                                                         <Text fontSize={'16px'} fontWeight='600' color='#1B262C'>Biografi</Text>
                                                     </Td>
                                                     <Td>
-                                                        <Text fontSize={'16px'} fontWeight='500' color='#1B262C'>Fc Barcelona</Text>
-                                                        <Text my='20px' fontSize={'16px'} fontWeight='500' color='#1B262C'>Pep Guardiola</Text>
-                                                        <Text mb='20px' fontSize={'16px'} fontWeight='500' color='#1B262C'>Lorem ipsum dolor sit amet consectetur.</Text>
-                                                        <Text fontSize={'16px'} fontWeight='500' color='#1B262C'> Lorem Ipsum has been the industry standard dummy</Text>
+                                                        <Text fontSize={'16px'} fontWeight='500' color='#1B262C'>{home_team.name}</Text>
+                                                        <Text my='20px' fontSize={'16px'} fontWeight='500' color='#1B262C'>{home_team.coach_name}</Text>
+                                                        <Text mb='20px' fontSize={'16px'} fontWeight='500' color='#1B262C'>{home_team.address}</Text>
+                                                        <Text fontSize={'16px'} fontWeight='500' color='#1B262C'>{home_team.description}</Text>
                                                     </Td>
                                                 </Tr>
                                             </Tbody>
@@ -51,7 +77,7 @@ const CardMatch = () => {
                                         _active={{
                                             bg: '#EB5757',
                                             transform: 'scale(0.98)',
-                                        }} onClick={onClose}>
+                                        }} onClick={homeOnClose}>
                                         Close
                                     </Button>
                                 </ModalFooter>
@@ -67,11 +93,11 @@ const CardMatch = () => {
                 <Flex direction={'row'} gap='24px'>
                     <Image width={'100px'} height='100px' src='rma-team.png' alt='rma' />
                     <Box my='auto'>
-                        <Text mb='8px' fontSize={'18px'} fontWeight='700' color='#1B262C'>Real Madrid</Text>
-                        <Button bgColor={'#fff'} onClick={onOpen}>
+                        <Text mb='8px' fontSize={'18px'} fontWeight='700' color='#1B262C'>{away_team.name}</Text>
+                        <Button bgColor={'#fff'} onClick={awayBioOnOpen}>
                             <Text fontSize={'14px'} fontWeight='400' color='#959FA8'>View Bio Team</Text>
                         </Button>
-                        <Modal isOpen={isOpen} onClose={onClose}>
+                        <Modal isOpen={awayBioIsOpen} onClose={awayOnClose}>
                             <ModalOverlay />
                             <ModalContent>
                                 <ModalHeader>Biografi Team</ModalHeader>
@@ -82,16 +108,16 @@ const CardMatch = () => {
                                             <Tbody py='10px'>
                                                 <Tr>
                                                     <Td>
-                                                        <Text fontSize={'16px'} fontWeight='600' color='#1B262C'>Name Team</Text>
-                                                        <Text my='20px' fontSize={'16px'} fontWeight='600' color='#1B262C'>Coach Name</Text>
-                                                        <Text mb='20px' fontSize={'16px'} fontWeight='600' color='#1B262C'>Address Team</Text>
+                                                    <Text fontSize={'16px'} fontWeight='600' color='#1B262C'>Nama</Text>
+                                                        <Text my='20px' fontSize={'16px'} fontWeight='600' color='#1B262C'>Pelatih</Text>
+                                                        <Text mb='20px' fontSize={'16px'} fontWeight='600' color='#1B262C'>Alamat</Text>
                                                         <Text fontSize={'16px'} fontWeight='600' color='#1B262C'>Biografi</Text>
                                                     </Td>
                                                     <Td>
-                                                        <Text fontSize={'16px'} fontWeight='500' color='#1B262C'>Real Madrid</Text>
-                                                        <Text my='20px' fontSize={'16px'} fontWeight='500' color='#1B262C'>Jose Mourinho</Text>
-                                                        <Text mb='20px' fontSize={'16px'} fontWeight='500' color='#1B262C'>Lorem ipsum dolor sit amet consectetur.</Text>
-                                                        <Text fontSize={'16px'} fontWeight='500' color='#1B262C'> Lorem Ipsum has been the industry standards</Text>
+                                                        <Text fontSize={'16px'} fontWeight='500' color='#1B262C'>{away_team.name}</Text>
+                                                        <Text my='20px' fontSize={'16px'} fontWeight='500' color='#1B262C'>{away_team.coach_name}</Text>
+                                                        <Text mb='20px' fontSize={'16px'} fontWeight='500' color='#1B262C'>{away_team.address}</Text>
+                                                        <Text fontSize={'16px'} fontWeight='500' color='#1B262C'>{away_team.description}</Text>
                                                     </Td>
                                                 </Tr>
                                             </Tbody>
@@ -104,7 +130,7 @@ const CardMatch = () => {
                                         _active={{
                                             bg: '#EB5757',
                                             transform: 'scale(0.98)',
-                                        }} mr={3} onClick={onClose}>
+                                        }} mr={3} onClick={awayOnClose}>
                                         Close
                                     </Button>
                                 </ModalFooter>
@@ -124,8 +150,8 @@ const CardMatch = () => {
                             </svg>
                         </Stack>
                         <Box>
-                            <Text fontSize={'16px'} fontWeight='500' color='#A0A8B1'>12 October 2022</Text>
-                            <Text fontSize={'16px'} fontWeight='500' color='#A0A8B1'>5:00 PM</Text>
+                            <Text fontSize={'16px'} fontWeight='500' color='#A0A8B1'>{matchDateTime.date}</Text>
+                            <Text fontSize={'16px'} fontWeight='500' color='#A0A8B1'>{matchDateTime.time}</Text>
                         </Box>
                     </Stack>
 
@@ -137,8 +163,8 @@ const CardMatch = () => {
                             </svg>
                         </Stack>
                         <Box>
-                            <Text fontSize={'16px'} fontWeight='500' color='#A0A8B1'>Lapangan Futsal Puri</Text>
-                            <Text fontSize={'16px'} fontWeight='500' color='#A0A8B1'>Jl. Pahlawan No. 2 Bulukumba</Text>
+                            <Text fontSize={'16px'} fontWeight='500' color='#A0A8B1'>{venue.name}</Text>
+                            <Text fontSize={'16px'} fontWeight='500' color='#A0A8B1'>{venue.address}</Text>
                         </Box>
                     </Stack>
                 </Flex>
