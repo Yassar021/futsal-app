@@ -3,15 +3,30 @@ import { Box, Container, Flex, Spinner } from "@chakra-ui/react"
 import LayoutUser from "../../layout/LayoutUser"
 import CardMatch from "../Homepage/cardMatch"
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { loadInitialList } from "../../store/reducers/schedule";
+import { fetchNextPage, loadInitialList } from "../../store/reducers/schedule";
+import useScroll from "../../utils/useScroll";
 
 const Schedule = () => {
     const {list, isLoading} = useAppSelector(state => state.schedule)
     const dispatch = useAppDispatch();
+    const scrollPos = useScroll();
+
+    const fetchData = () => {
+        dispatch(fetchNextPage());
+    }
 
     useEffect(() => {
         dispatch(loadInitialList());
     },[])
+
+    useEffect(() => {
+        const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
+
+        if (scrollPos.y === scrollTop) {
+            fetchData()
+        }
+
+    },[scrollPos.y])
 
     return(
         <LayoutUser pageTitle={'Schedule'}>

@@ -32,6 +32,24 @@ export const loadInitialList = createAsyncThunk("fetch/schedule/initial",(arg,{g
     }
 })
 
+export const fetchNextPage = createAsyncThunk("fetch/schedule/next", (arg, {getState, rejectWithValue}) => {
+    const state = getState() as RootState;
+    if (state.schedule.hasEnded) {
+        return;
+    }
+    if (state.account.userInfo?.data.id) {
+        const scheduleState = state.schedule;
+        const response = getLatestSchedules(state.account.userInfo.data.id.toString(),{
+            page: scheduleState.page + 1,
+            size: 10
+        })
+
+        return response;
+    }else{
+        rejectWithValue(null);
+    }
+})
+
 const scheduleSlice = createSlice({
     initialState,
     name: "schedule",
@@ -49,6 +67,22 @@ const scheduleSlice = createSlice({
             state.isLoading = false;
             if (action.payload) {
                 state.list = action.payload.data
+            }
+        })
+        .addCase(fetchNextPage.pending, (state, action) => {
+            state.isLoading = true;
+        })
+        .addCase(fetchNextPage.fulfilled, (state,action) => {
+            state.page = state.page + 1;
+            state.isLoading = false;
+            if (action.payload) {
+                state.list = [
+                    ...state.list,
+                    ...action.payload.data
+                ]
+                if (!action.payload.next_page_url) {
+                    state.hasEnded = true;
+                }
             }
         })
     }
