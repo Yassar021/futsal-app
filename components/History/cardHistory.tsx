@@ -1,32 +1,34 @@
 import {
   Box,
-  Button,
   Center,
   Flex,
-  HStack,
   Image,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  ModalOverlay,
-  Stack,
-  Table,
-  TableContainer,
-  Tbody,
-  Td,
   Text,
-  Tr,
   VStack,
-  useDisclosure,
 } from "@chakra-ui/react";
 import ModalSaran from "./modalSaran";
-import moment from "moment";
+import React, { useMemo } from "react";
+import { MatchHistory } from "../../types/schedule";
+import dayjs from "dayjs";
 
-const CardHistory = ({ home_team, away_team, match_results }) => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+type Props = {
+  match: MatchHistory
+}
+
+const CardHistory = ({ match }: Props) => {
+  const { home_team, away_team, date, result } = match;
+
+  const matchDateTime = useMemo(() => {
+    const dateObj = dayjs(date);
+    const matchDate = dateObj.format("DD MMMM YYYY");
+    const matchTime = dateObj.format("HH:mm");
+
+    return {
+      date: matchDate,
+      time: matchTime
+    }
+  }, [date])
+
   return (
     <Box
       borderRadius={"5px"}
@@ -59,22 +61,28 @@ const CardHistory = ({ home_team, away_team, match_results }) => {
           </VStack>
           <Box my="auto">
             <Text mb="8px" fontSize={"70px"} fontWeight="700" color="#1B262C">
-              {match_results[0].home}
+              {result.home}
             </Text>
           </Box>
         </Flex>
         <Box my="auto" textAlign={"center"}>
+          {
+            !result.isSettle &&
+            <Text fontSize={"14px"} fontWeight="400" color="#ff0000">
+              Skor yang di masukan belum sama
+            </Text>
+          }
           <Text fontSize={"14px"} fontWeight="400" color="#172C41">
             Fulltime
           </Text>
           <Text fontSize={"14px"} fontWeight="400" color="#172C41">
-            {moment(match_results.created_at).format("DD-MM-YYYY")}
+            {`${matchDateTime.date} ${matchDateTime.time}`}
           </Text>
         </Box>
         <Flex direction={"row"} gap="100px">
           <Box my="auto">
             <Text mb="8px" fontSize={"70px"} fontWeight="700" color="#1B262C">
-              {match_results[0].away}
+              {result.away}
             </Text>
           </Box>
           <VStack direction={"column"} spacing="24px">

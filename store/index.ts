@@ -4,6 +4,8 @@ import findTeams from "./reducers/findTeams";
 import challengeSent from "./reducers/challengeSent";
 import challengeReceived from "./reducers/challengeReceived";
 import schedule from "./reducers/schedule";
+import histories from "./reducers/histories";
+
 
 export const store = configureStore({
     reducer: {
@@ -11,7 +13,8 @@ export const store = configureStore({
         findTeams: findTeams,
         challengeSent: challengeSent,
         challengeReceived: challengeReceived,
-        schedule: schedule
+        schedule: schedule,
+        histories: histories
     }
 })
 
