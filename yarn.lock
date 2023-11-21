@@ -1491,6 +1491,13 @@ braces@^3.0.2:
   dependencies:
     fill-range "^7.0.1"
 
+calendarjs@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/calendarjs/-/calendarjs-0.1.0.tgz#3f94fe1701900e2d23597aa663f60303ff553a24"
+  integrity sha512-6W6NFVhQF9ESmAPTANTXIiKIW+Z8joGsaukZp8WYpWoqaRXuQFb2kzI6uJWe94LnpAp5dGdPTOHa2g9Ybhepag==
+  dependencies:
+    moment "^2.17.1"
+
 call-bind@^1.0.0, call-bind@^1.0.2:
   version "1.0.2"
   resolved "https://registry.npmjs.org/call-bind/-/call-bind-1.0.2.tgz"
@@ -2689,7 +2696,7 @@ minimist@^1.2.0, minimist@^1.2.6:
   resolved "https://registry.npmjs.org/minimist/-/minimist-1.2.7.tgz"
   integrity sha512-bzfL1YUZsP41gmu/qjrEk0Q6i2ix/cVeAhbCbqH9u3zYutS1cLg00qhrD0M2MVdCcx4Sc0UpP2eBWo9rotpq6g==
 
-moment@^2.29.4:
+moment@^2.17.1, moment@^2.18.1, moment@^2.29.4:
   version "2.29.4"
   resolved "https://registry.npmjs.org/moment/-/moment-2.29.4.tgz"
   integrity sha512-5LC9SOxjSc2HF6vO2CyuTDNivEdoz2IvyJJGj6X8DJ0eFyfszE0QiEd+iXmBvUP3WHxSjFH/vIsA0EN00cgr8w==
@@ -3055,6 +3062,14 @@ react-style-singleton@^2.2.1:
     get-nonce "^1.0.0"
     invariant "^2.2.4"
     tslib "^2.0.0"
+
+react-timeslot-calendar@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/react-timeslot-calendar/-/react-timeslot-calendar-0.2.0.tgz#2ade3a36beaa860f2f8112302e31a3edbb35284e"
+  integrity sha512-Ku/p8hOmuOolPabvMNaVvuRcWwqFIMXy00vCGugkx3kE3qcuXuSWyLkSrH8rfgUF8z7i1EUigmJ2/SzA6YF1Eg==
+  dependencies:
+    calendarjs "^0.1.0"
+    moment "^2.18.1"
 
 react-transition-group@^4.4.1:
   version "4.4.5"

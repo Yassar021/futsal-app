@@ -30,3 +30,19 @@ export enum FetchStatus {
     IDLE,
     FINISHED
 }
+
+
+export type BookingSlot = {
+    id: number;
+    booking_id: number;
+    date_start: string;
+}
+
+export type VenueField = {
+    id: number;
+    name: string;
+    type: {
+        id: number;
+        name: string;
+    }
+}

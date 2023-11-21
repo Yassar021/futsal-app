@@ -4,26 +4,37 @@ import LayoutUser from "../../layout/LayoutUser"
 import CardVenue from "./cardVenue"
 import { FetchStatus } from "../../types/type";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { fetchVanues } from "../../store/reducers/vanue";
+import { fetchInitialVenueList, fetchVenueNextList } from "../../store/reducers/venue";
+import useScroll from "../../utils/useScroll";
 
 const Venue = () => {
-    const {status, vanues} = useAppSelector(state => state.vanue)
+    const {list, isLoading} = useAppSelector(state => state.venue)
     const dispatch = useAppDispatch()
+    const scrollPos = useScroll();
 
     useEffect(() => {
-        dispatch(fetchVanues())
+        dispatch(fetchInitialVenueList())
     },[])
+
+    useEffect(() => {
+        const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
+
+        if (scrollPos.y === scrollTop) {
+            dispatch(fetchVenueNextList());
+        }
+
+    },[scrollPos.y])
     
     return(
         <LayoutUser pageTitle={'Venue'}>
             <Container maxW='6xl'>
                 {
-                    status === FetchStatus.LOADING ? 
-                    <Spinner />
-                    :
-                    vanues.map((vanue,key) => (
+                    list.map((vanue,key) => (
                         <CardVenue key={vanue.id} {...vanue} />
                     ))
+                }
+                {
+                    isLoading && <Spinner />
                 }
             </Container>
         </LayoutUser>
