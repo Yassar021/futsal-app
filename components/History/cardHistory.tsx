@@ -1,22 +1,31 @@
 import {
   Box,
+  Button,
   Center,
+  Divider,
   Flex,
+  HStack,
   Image,
   Text,
   VStack,
+  useDisclosure,
 } from "@chakra-ui/react";
 import ModalSaran from "./modalSaran";
 import React, { useMemo } from "react";
-import { MatchHistory } from "../../types/schedule";
+import { InsertedResult, MatchHistory } from "../../types/schedule";
 import dayjs from "dayjs";
+import MatchResultModal from "./matchResultModal";
 
 type Props = {
   match: MatchHistory
 }
 
 const CardHistory = ({ match }: Props) => {
+  const { isOpen: isFeedbackOpen, onOpen: openFeedback, onClose: closeFeedback } = useDisclosure()
+  const { isOpen: isResultOpen, onOpen: openResult, onClose: closeResult } = useDisclosure()
+
   const { home_team, away_team, date, result } = match;
+
 
   const matchDateTime = useMemo(() => {
     const dateObj = dayjs(date);
@@ -28,6 +37,24 @@ const CardHistory = ({ match }: Props) => {
       time: matchTime
     }
   }, [date])
+
+  const home_submited = useMemo(() => {
+    const submited = result.submited.find(item => item.created_by === home_team.id);
+    if (submited) {
+      return submited;
+    }
+
+    return null;
+  }, [result.submited])
+
+  const away_submited = useMemo(() => {
+    const submited = result.submited.find(item => item.created_by === away_team.id);
+    if (submited) {
+      return submited;
+    }
+
+    return null;
+  }, [result.submited])
 
   return (
     <Box
@@ -57,13 +84,24 @@ const CardHistory = ({ match }: Props) => {
               <Text mb="8px" fontSize={"18px"} fontWeight="700" color="#1B262C">
                 {home_team.name}
               </Text>
+              {
+                !result.isSettle &&
+                <InsertedScore submited={home_submited} home_name={home_team.name} away_name={away_team.name} />
+
+              }
             </Box>
           </VStack>
-          <Box my="auto">
+          <HStack my="auto">
             <Text mb="8px" fontSize={"70px"} fontWeight="700" color="#1B262C">
               {result.home}
             </Text>
-          </Box>
+            {
+              result.isPenalty ?
+                <Text fontSize={"30px"}>{`(${result.home_penalty})`}</Text>
+                :
+                null
+            }
+          </HStack>
         </Flex>
         <Box my="auto" textAlign={"center"}>
           {
@@ -72,19 +110,46 @@ const CardHistory = ({ match }: Props) => {
               Skor yang di masukan belum sama
             </Text>
           }
+          {
+            !result.isSettle &&
+            <Button
+              onClick={openResult}
+              color='#fff'
+              fontFamily={'DM Sans'}
+              bgColor={'#0F4C75'}
+              height={'40px'}
+              _hover={{ bg: '#0F4C75' }}
+              fontSize={'14px'}
+              fontWeight={'500'}
+              _active={{
+                bg: '#0F4C75',
+                transform: 'scale(0.98)',
+              }}
+            >
+              Masukan Skor
+            </Button>
+          }
           <Text fontSize={"14px"} fontWeight="400" color="#172C41">
-            Fulltime
+            {
+              result.isPenalty ? "Extra time" : "Fulltime"
+            }
           </Text>
           <Text fontSize={"14px"} fontWeight="400" color="#172C41">
             {`${matchDateTime.date} ${matchDateTime.time}`}
           </Text>
         </Box>
         <Flex direction={"row"} gap="100px">
-          <Box my="auto">
+          <HStack my="auto">
+            {
+              result.isPenalty ?
+                <Text fontSize={"30px"}>{`(${result.away_penalty})`}</Text>
+                :
+                null
+            }
             <Text mb="8px" fontSize={"70px"} fontWeight="700" color="#1B262C">
               {result.away}
             </Text>
-          </Box>
+          </HStack>
           <VStack direction={"column"} spacing="24px">
             <Image
               width={"100px"}
@@ -96,16 +161,78 @@ const CardHistory = ({ match }: Props) => {
               <Text mb="8px" fontSize={"18px"} fontWeight="700" color="#1B262C">
                 {away_team.name}
               </Text>
+              {
+                !result.isSettle &&
+                <InsertedScore submited={away_submited} home_name={home_team.name} away_name={away_team.name} />
+              }
             </Box>
           </VStack>
         </Flex>
       </Flex>
 
       <Center>
-        <ModalSaran />
+        <Button
+          onClick={openFeedback}
+          color='#fff'
+          fontFamily={'DM Sans'}
+          bgColor={'#0F4C75'}
+          width='140px'
+          height={'40px'}
+          _hover={{ bg: '#0F4C75' }}
+          fontSize={'14px'}
+          fontWeight={'500'}
+          _active={{
+            bg: '#0F4C75',
+            transform: 'scale(0.98)',
+          }}
+        >
+          Masukan dan saran
+        </Button>
+        {
+          isFeedbackOpen && <ModalSaran onClose={closeFeedback} />
+        }
       </Center>
+      {
+        isResultOpen && <MatchResultModal match={match} onClose={closeResult} />
+      }
     </Box>
   );
 };
+
+type InsertedScoreProps = {
+  submited: InsertedResult | null;
+  home_name: string;
+  away_name: string;
+};
+
+function InsertedScore({ submited, home_name, away_name }: InsertedScoreProps) {
+
+  if (submited === null) {
+    return (
+      <Box>
+        <Text color={"red"} fontSize={"xs"}>Belum Memasukan score</Text>
+      </Box>
+    )
+  }
+
+  return (
+    <Box>
+      <Text fontSize={"xs"}>{`Memasukan score`}</Text>
+      <Text fontSize={"xs"}>{`${home_name} : ${submited.home}`}</Text>
+      <Text fontSize={"xs"}>{`${away_name} : ${submited.away}`}</Text>
+      {
+        submited.isPenalty ?
+          <>
+            <Divider />
+            <Text fontSize={"xs"}>{`Dengan Penalty score`}</Text>
+            <Text fontSize={"xs"}>{`${home_name} : ${submited.home_penalty}`}</Text>
+            <Text fontSize={"xs"}>{`${away_name} : ${submited.away_penalty}`}</Text>
+          </>
+          :
+          null
+      }
+    </Box>
+  )
+}
 
 export default CardHistory;

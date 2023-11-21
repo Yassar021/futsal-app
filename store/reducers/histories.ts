@@ -1,7 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { MatchHistory } from "../../types/schedule";
+import { GameResult, MatchHistory } from "../../types/schedule";
 import { RootState } from "..";
-import { getMatchHistories } from "../../services/API/match";
+import { getMatchHistories, setMatchResult } from "../../services/API/match";
+import { SubmitGameResult } from "../../types/request";
 
 interface InitialState {
     list: MatchHistory[];
@@ -30,6 +31,15 @@ export const fetchInitialList = createAsyncThunk("fetch/histories/initial",(arg,
     }else{
         rejectWithValue(null);
     }
+})
+
+export const updateScore = createAsyncThunk("update/histories/result",async ({team_id, match_id, result}: {team_id: number,match_id: number, result: SubmitGameResult}, {getState,dispatch}) => {
+    const { histories } = getState() as RootState;
+    const { page } = histories;
+
+    const responseUpdate = await setMatchResult(team_id,match_id,result);
+
+    dispatch(fetchInitialList());
 })
 
 const historiesSlice = createSlice({

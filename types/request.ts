@@ -11,3 +11,11 @@ export interface CreateChallengeRequest {
 }
 
 export type UpdateChallengeRequest = Omit<CreateChallengeRequest, "team_id">;
+
+export type SubmitGameResult = {
+    home: number;
+	away: number;
+	isPenalty: boolean;
+	home_penalty: number;
+	away_penalty: number;
+}
