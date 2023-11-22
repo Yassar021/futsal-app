@@ -1,3 +1,5 @@
+import { TeamInfo } from "./user";
+
 export type TVanue = {
     id: string;
     name: string;
@@ -45,4 +47,10 @@ export type VenueField = {
         id: number;
         name: string;
     }
+}
+
+
+export type MatchFeedback = {
+    review: string;
+    team: TeamInfo;
 }

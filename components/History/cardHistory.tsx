@@ -189,7 +189,7 @@ const CardHistory = ({ match }: Props) => {
           Masukan dan saran
         </Button>
         {
-          isFeedbackOpen && <ModalSaran onClose={closeFeedback} />
+          isFeedbackOpen && <ModalSaran gameId={match.id} onClose={closeFeedback} />
         }
       </Center>
       {
