@@ -20,7 +20,7 @@ const CardHome = () => {
                 </Center>
             </Box>
             <Flex justifyContent={'center'} direction={'row'} mt='40px' gap='40px' >
-                <Image borderRadius={'100%'} width={'150px'} height='150px' src='/bg-team.png' alt='bg-team' />
+                <Image borderRadius={'100%'} width={'150px'} height='150px' src={team?.profile_picture} alt='bg-team' />
                 <Box my='auto'>
                     <Text mb='20px' fontSize={'18px'} fontFamily='700' letterSpacing={'0.02em'} color='#1B262C'>{team?.name}</Text>
                     <Text fontSize={'16px'} fontFamily='400' letterSpacing={'0.02em'} color='#1B262C'>{team?.description}</Text>

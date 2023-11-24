@@ -38,7 +38,7 @@ const CardMatch = ({away_team, home_team, venue ,date}: Props) => {
             <Flex justifyContent={'center'} direction={'row'} pt='45px' pb='30px' gap='40px' >
 
                 <Flex direction={'row'} gap='24px'>
-                    <Image width={'100px'} height='100px' src='fcb-team.png' alt='FCB' />
+                    <Image borderRadius={'100%'} width={'100px'} height='100px' src={home_team.profile_picture} alt='FCB' />
                     <Box my='auto'>
                         <Text mb='8px' fontSize={'18px'} fontWeight='700' color='#1B262C'>{home_team.name}</Text>
                         <Button bgColor={'#fff'} onClick={homeBioOnOpen}>
@@ -91,7 +91,7 @@ const CardMatch = ({away_team, home_team, venue ,date}: Props) => {
                 </Box>
 
                 <Flex direction={'row'} gap='24px'>
-                    <Image width={'100px'} height='100px' src='rma-team.png' alt='rma' />
+                    <Image borderRadius={'100%'} width={'100px'} height='100px' src={away_team.profile_picture} alt='rma' />
                     <Box my='auto'>
                         <Text mb='8px' fontSize={'18px'} fontWeight='700' color='#1B262C'>{away_team.name}</Text>
                         <Button bgColor={'#fff'} onClick={awayBioOnOpen}>

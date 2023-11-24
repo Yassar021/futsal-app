@@ -24,7 +24,7 @@ const FindTeam = () => {
   const alert = useAlert();
 
   const fetchData = () => {
-    if (isEnd) {
+    if (isEnd || isLoading) {
       return
     }
     getAvailableTeams({ page: page + 1, size: 3 }).then((data) => {

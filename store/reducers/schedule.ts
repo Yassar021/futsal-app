@@ -22,7 +22,7 @@ export const loadInitialList = createAsyncThunk("fetch/schedule/initial",(arg,{g
     if (state.account.userInfo?.data.id) {
         const scheduleState = state.schedule;
         const response = getLatestSchedules(state.account.userInfo.data.id.toString(),{
-            page: scheduleState.page,
+            page: 1,
             size: 10
         })
 
@@ -65,6 +65,7 @@ const scheduleSlice = createSlice({
         })
         .addCase(loadInitialList.fulfilled,(state,action) => {
             state.isLoading = false;
+            state.page = 1;
             if (action.payload) {
                 state.list = action.payload.data
             }
@@ -73,9 +74,9 @@ const scheduleSlice = createSlice({
             state.isLoading = true;
         })
         .addCase(fetchNextPage.fulfilled, (state,action) => {
-            state.page = state.page + 1;
             state.isLoading = false;
             if (action.payload) {
+                state.page = state.page + 1;
                 state.list = [
                     ...state.list,
                     ...action.payload.data
