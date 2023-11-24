@@ -5,6 +5,7 @@ import { AccountType } from "../../types/user";
 type TAuthContext = {
     token: string;
     isLogged: boolean;
+    type: AccountType | undefined;
     login: (username: string, password: string, type: AccountType) => Promise<any>;
     logout: () => void;
 }
@@ -12,6 +13,7 @@ type TAuthContext = {
 export const AuthContext = createContext<TAuthContext>({
     token: "",
     isLogged: false,
+    type: undefined,
     login: () => new Promise(() => ({})),
     logout: () => {}
 })

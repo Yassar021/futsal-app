@@ -20,5 +20,6 @@ export function useUser(): UserSession {
     return {
         isLogged: ctx.isLogged,
         token: ctx.token,
+        type: ctx.type
     }
 }

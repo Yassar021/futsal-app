@@ -19,3 +19,18 @@ export async function teamLogin({email, password}: LoginAccount) {
     
     return req
 }
+
+export async function venueLogin({email,password}: LoginAccount) {
+    let req = await baseFetcher(`/auth/venue/login`,{
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            email,
+            password
+        })
+    });
+    
+    return req
+}

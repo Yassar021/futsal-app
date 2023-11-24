@@ -8,11 +8,11 @@ const NavbarVenue = () => {
                     <Flex direction={'row'} gap='120px' justifyContent={'space-between'}>
                         <Image width={'60px'} height='60px' borderRadius={'100%'} src='/futsal-ico.png' alt='Icon Futsal' />
                         <Stack my='auto' direction={'row'} spacing='40px'>
-                            <Link href="/AdminVenue">
+                            <Link href="/venue_admin">
                                 <Text fontSize={'18px'} fontWeight='500' color={'#1B262C'}>Home</Text>
                             </Link>
-                            <Link href="/AdminBooking">
-                                <Text fontSize={'18px'} fontWeight='500' color={'#A0A8B1'}>Booking List</Text>
+                            <Link href="/venue_admin/booking_request">
+                                <Text fontSize={'18px'} fontWeight='500' color={'#A0A8B1'}>Booking Request</Text>
                             </Link>
                             <Link href="/AdminSparing">
                                 <Text fontSize={'18px'} fontWeight='500' color={'#A0A8B1'}>Sparing List</Text>

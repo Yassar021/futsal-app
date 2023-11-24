@@ -4,13 +4,14 @@ import Navbar from "../components/Navbar";
 import { useUser } from "../services/AuthProvider/hooks";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
+import { AccountType } from "../types/user";
 
 const LayoutUser = ({ pageTitle, children }) => {
   const user = useUser();
   const router = useRouter()
 
   useEffect(() => {
-    if (!user.isLogged) {
+    if (!user.isLogged && user.type !== AccountType.TEAM) {
       router.push("/Login")
     }
   },[user])

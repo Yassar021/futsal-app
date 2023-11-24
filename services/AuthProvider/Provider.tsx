@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { AuthContext } from "./context";
-import { teamLogin } from '../auth';
+import { teamLogin, venueLogin } from '../auth';
 import { useAppDispatch } from '../../store/hooks';
 import { clearAccount, setAccount, setFetchingDone } from '../../store/reducers/account';
 import { useSelector } from 'react-redux';
@@ -15,12 +15,23 @@ const AuthProvider = ({ children }) => {
 
     const dispatch = useAppDispatch();
     const isUserFetching = useSelector((state: RootState) => state.account.isFetching);
+    const accountType = useSelector((state: RootState) => state.account.userInfo?.type)
 
     const login = async (email: string, password: string, type: AccountType = AccountType.TEAM) => {
-        let result = await teamLogin({
-            email,
-            password
-        })
+        let result;
+
+        if (type === AccountType.TEAM) {
+            result = await teamLogin({
+                email,
+                password
+            })
+        } else {
+            result = await venueLogin({
+                email,
+                password
+            })
+        }
+
 
         if (result.success) {
             localStorage.setItem("token",result.data.token)
@@ -28,7 +39,7 @@ const AuthProvider = ({ children }) => {
             setLogged(true)
             dispatch(setAccount({
                 type: type,
-                data: type === "team" ? result.data.team : result.data.team
+                data: type === AccountType.TEAM ? result.data.team : result.data.team
             }))
         }
 
@@ -46,10 +57,11 @@ const AuthProvider = ({ children }) => {
         return {
             isLogged,
             token,
+            type: accountType,
             login,
             logout
         }
-    },[isLogged, token])
+    },[isLogged, token,accountType])
 
 
     useEffect(() => {

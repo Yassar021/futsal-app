@@ -3,6 +3,7 @@ import Head from "next/head"
 import { useUser } from "../services/AuthProvider/hooks";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
+import { AccountType } from "../types/user";
 
 const LayoutLogin = ({pageTitle, children}) => {
 
@@ -11,6 +12,10 @@ const LayoutLogin = ({pageTitle, children}) => {
 
     useEffect(() => {
       if (user.isLogged) {
+        if (user.type === AccountType.VENUE) {
+            router.push("/venue_admin");
+            return
+        }
         router.push("/");
       }
     },[user])

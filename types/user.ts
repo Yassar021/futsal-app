@@ -17,7 +17,7 @@ export type VenueInfo = {
     est_year: number,
     owner_name: string,
     phone: string,
-    profile_picture: string;
+    profil_picture: string;
 }
 
 type TeamUserInfo = {
