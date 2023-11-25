@@ -15,7 +15,7 @@ const CardVenue = () => {
         <Box mb='60px' borderRadius={'5px'} shadow='xl' bgColor={'#fff'} width={'100%'} height='310px'>
             <Box borderRadius={'5px'} width={'100%'} height='60px' bgColor='#1B262C' py='16px'>
                 <Center>
-                    <Text fontWeight={'500'} fontSize='18px' color='#fff'>My Team</Text>
+                    <Text fontWeight={'500'} fontSize='18px' color='#fff'>My Venue</Text>
                 </Center>
             </Box>
             <Flex justifyContent={'center'} direction={'row'} mt='40px' gap='40px' >

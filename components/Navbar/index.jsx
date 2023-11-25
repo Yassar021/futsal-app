@@ -1,9 +1,16 @@
 import { Box, Button, Container, Flex, Image, Link, Stack, Text } from "@chakra-ui/react"
 import NextLink from 'next/link'
 import { useLogout } from "../../services/AuthProvider/hooks"
+import { useRouter } from "next/router"
+import { useCallback, useEffect } from "react"
 
 const Navbar = () => {
     const logout = useLogout()
+    const router = useRouter()
+
+    const isActive = useCallback((path) => {
+        return path === router.asPath;
+    },[router.asPath])
 
     const handleLogout = () => {
         logout()
@@ -16,22 +23,22 @@ const Navbar = () => {
                         <Image width={'60px'} height='60px' borderRadius={'100%'} src='/futsal-ico.png' alt='Icon Futsal' />
                         <Stack my='auto' direction={'row'} spacing='40px'>
                             <Link as={NextLink} href="/Home">
-                                <Text fontSize={'18px'} fontWeight='500' color={'#1B262C'}>Home</Text>
+                                <Text fontSize={'18px'} fontWeight='500' color={isActive("/Home") ? '#1B262C' : '#A0A8B1'}>Home</Text>
                             </Link>
                             <Link as={NextLink} href="/Inbox">
-                                <Text fontSize={'18px'} fontWeight='500' color={'#A0A8B1'}>Inbox</Text>
+                                <Text fontSize={'18px'} fontWeight='500' color={isActive("/Inbox") ? '#1B262C' : '#A0A8B1'}>Inbox</Text>
                             </Link>
                             <Link as={NextLink} href="/FindTeam">
-                                <Text fontSize={'18px'} fontWeight='500' color={'#A0A8B1'}>Find Team</Text>
+                                <Text fontSize={'18px'} fontWeight='500' color={isActive("/FindTeam") ? '#1B262C' : '#A0A8B1'}>Find Team</Text>
                             </Link>
                             <Link as={NextLink} href="/Schedule">
-                                <Text fontSize={'18px'} fontWeight='500' color={'#A0A8B1'}>Schedule</Text>
+                                <Text fontSize={'18px'} fontWeight='500' color={isActive("/Schedule") ? '#1B262C' : '#A0A8B1'}>Schedule</Text>
                             </Link>
                             <Link as={NextLink} href="/History">
-                                <Text fontSize={'18px'} fontWeight='500' color={'#A0A8B1'}>History</Text>
+                                <Text fontSize={'18px'} fontWeight='500' color={isActive("/History") ? '#1B262C' : '#A0A8B1'}>History</Text>
                             </Link>
                             <Link as={NextLink} href="/Venue">
-                                <Text fontSize={'18px'} fontWeight='500' color={'#A0A8B1'}>Venue</Text>
+                                <Text fontSize={'18px'} fontWeight='500' color={isActive("/Venue") ? '#1B262C' : '#A0A8B1'}>Venue</Text>
                             </Link>
                         </Stack>
                         <Box my='auto'>
