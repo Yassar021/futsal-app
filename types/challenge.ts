@@ -10,7 +10,9 @@ export enum ChallengeStatus {
     ACCEPTED = 'accepted',
     REJECTED = 'rejected',
     PENDING = 'pending', 
-    EXPIRED = 'expired'
+    EXPIRED = 'expired',
+    VENUE_PENDING = 'venue_pending',
+    VENUE_REJECTED = 'venue_rejected',
 }
 
 export type Challenge = {
@@ -34,3 +36,5 @@ export type ChallengeItem = {
     status: ChallengeStatus;
 
 }
+
+export type BookingRequest = Omit<Challenge,"venue">

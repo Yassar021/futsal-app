@@ -16,7 +16,7 @@ function CalenderSlot({ slots: bookedSlots }: Props) {
         const endHour = parseInt(closingHours.split(":")[0]);
         const slots: number[][] = [];
 
-        for (let i = startHour; i <= endHour; i += 2) {
+        for (let i = startHour; i <= endHour; i++) {
             slots.push([i, i + 1]);
         }
 

@@ -7,6 +7,7 @@ import schedule from "./reducers/schedule";
 import histories from "./reducers/histories";
 import venue from "./reducers/venue";
 import bookingSlots from "./reducers/bookingSlots";
+import bookingRequests from "./reducers/bookingRequests";
 
 
 export const store = configureStore({
@@ -18,7 +19,8 @@ export const store = configureStore({
         schedule: schedule,
         histories: histories,
         venue: venue,
-        bookingSlots: bookingSlots
+        bookingSlots: bookingSlots,
+        bookingRequests: bookingRequests
     }
 })
 

@@ -130,7 +130,10 @@ function ChallengeSentInfo({ isOpen, onClose, challengeId, onDelete }: Props) {
                                                     type="time"
                                                     value={time}
                                                     placeholder="Tentukan Waktu"
-                                                    onChange={e => setTime(e.target.value)}
+                                                    onChange={e => {
+                                                        const [hour, minute] = e.target.value.split(":")
+                                                        setTime(`${hour}:00`)
+                                                    }}
                                                     disabled={isLoading}
                                                 />
                                                 :

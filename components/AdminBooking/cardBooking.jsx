@@ -1,6 +1,7 @@
 import { Box, Center, Flex, Image, Tab, TabIndicator, TabList, TabPanel, TabPanels, Tabs, Text } from "@chakra-ui/react"
 import CardList from "./cardList"
 import CardRequest from "./cardRequest"
+import RequestList from "./RequestList"
 
 const CardBooking = () => {
     return( 
@@ -24,7 +25,7 @@ const CardBooking = () => {
                     />
                     <TabPanels>
                         <TabPanel>
-                            <CardRequest />
+                            <RequestList />
                         </TabPanel>
                         <TabPanel>
                             <CardList final={'Accepted'} />

@@ -19,3 +19,8 @@ export type SubmitGameResult = {
 	home_penalty: number;
 	away_penalty: number;
 }
+
+export type AcceptBooking = {
+    field_id: number,
+    description: string
+}

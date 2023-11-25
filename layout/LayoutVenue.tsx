@@ -12,7 +12,7 @@ const LayoutVenue = ({pageTitle, children}) => {
 
   useEffect(() => {
     if (!user.isLogged && user.type !== AccountType.VENUE) {
-      router.push("/Login")
+      router.push("/venue_admin/login")
     }
   },[user])
 

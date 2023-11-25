@@ -6,7 +6,13 @@ export function getStatusColor(status: ChallengeStatus): string {
         case ChallengeStatus.PENDING:
             result = "#FFA600"
             break;
+        case ChallengeStatus.VENUE_PENDING:
+            result = "#FFA600"
+            break;
         case ChallengeStatus.REJECTED:
+            result = "#EB5757"
+            break;
+        case ChallengeStatus.VENUE_REJECTED:
             result = "#EB5757"
             break;
         case ChallengeStatus.ACCEPTED:
@@ -23,8 +29,14 @@ export function getStatusName(status: ChallengeStatus): string {
         case ChallengeStatus.PENDING:
             result = "Pending"
             break;
+        case ChallengeStatus.VENUE_PENDING:
+            result = "Venue Pending"
+            break;
         case ChallengeStatus.REJECTED:
             result = "Rejected"
+            break;
+        case ChallengeStatus.VENUE_REJECTED:
+            result = "Rejected by Venue"
             break;
         case ChallengeStatus.ACCEPTED:
             result = "Accepted"

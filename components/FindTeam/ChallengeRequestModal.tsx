@@ -1,4 +1,4 @@
-import { Button, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Select, Spinner, Stack, Table, TableContainer, Tbody, Td, Text, Tr } from '@chakra-ui/react'
+import { Button, Input, Modal, ModalBody, ModalCloseButton, Box, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Select, Spinner, Stack, Table, TableContainer, Tbody, Td, Text, Tr } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import { getOptionFields } from '../../services/API/fields';
 import { CreateChallengeRequest } from '../../types/request';
@@ -90,7 +90,11 @@ function ChallengeRequestModal({ isOpen, onClose, onConfirm, teamName, teamId }:
                                             my={"6px"}
                                             type="time"
                                             placeholder="Tentukan Waktu"
-                                            onChange={e => setTime(e.target.value)}
+                                            value={time}
+                                            onChange={e => {
+                                                const [hour, minute] = e.target.value.split(":")
+                                                setTime(`${hour}:00`)
+                                            }}
                                             disabled={isLoading}
                                         />
                                         <Select disabled={isLoading} onChange={e => setFieldId(parseInt(e.target.value))} placeholder="Tentukan Tempat">
