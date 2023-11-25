@@ -1,9 +1,10 @@
-import { Text, Modal, ModalOverlay, ModalContent, Spinner, ModalHeader, ModalCloseButton, ModalBody, VStack, HStack, Input, Select, Button, ModalFooter, Stack, AlertDialog, AlertDialogOverlay, AlertDialogContent, AlertDialogHeader, AlertDialogCloseButton, AlertDialogBody, AlertDialogFooter } from '@chakra-ui/react'
+import { Text, Modal, ModalOverlay, ModalContent, Spinner, ModalHeader, ModalCloseButton, ModalBody, VStack, HStack, Input, Select, Button, ModalFooter, Stack, AlertDialog, AlertDialogOverlay, AlertDialogContent, AlertDialogHeader, AlertDialogCloseButton, AlertDialogBody, AlertDialogFooter, Center } from '@chakra-ui/react'
 import React, { useEffect, useMemo } from 'react'
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { setSelected } from '../../store/reducers/challengeReceived';
 import dayjs from 'dayjs';
 import { ChallengeStatus } from '../../types/challenge';
+import WhatsappLink from '../Commons/WhatsappLink';
 
 type Props = {
     isOpen: boolean;
@@ -72,6 +73,9 @@ function ChallengeReceivedInfo({ isOpen, challengeId, onClose, onAccept, onRejec
                                         <Text w={"50%"} fontSize={'16px'} fontWeight='600' color='#1B262C'>Message</Text>
                                         <Text w={"50%"} mb='20px' fontSize={'16px'} fontWeight='500' color='#1B262C'>{challenge?.message}</Text>
                                     </HStack>
+                                    <Center>
+                                        <WhatsappLink phone={challenge.home_team.phone} />
+                                    </Center>
                                 </VStack>
                             </ModalBody>
 

@@ -1,6 +1,7 @@
 import React from "react";
-import { Box, Button, Center, Flex, Image, Text, VStack, useDisclosure } from "@chakra-ui/react"
+import { Box, Button, Center, Flex, Image, Link, Stack, Text, VStack, useDisclosure } from "@chakra-ui/react"
 import ModalVenue from './modalVenue'
+import WhatsappLink from "../Commons/WhatsappLink";
 
 type Props = {
     id: number;
@@ -25,7 +26,7 @@ const CardVenue = ({ id, name, owner_name, phone, address }: Props) => {
                 <VStack alignItems={'flex-start'} spacing='10px' my='auto'>
                     <Text fontSize={'18px'} fontWeight='700' letterSpacing={'0.02em'} color='#1B262C'>{name}</Text>
                     <Text fontSize={'16px'} fontFamily='400' letterSpacing={'0.02em'} color='#1B262C'>{address}</Text>
-
+                    <WhatsappLink phone={phone} />
                     <Button
                         onClick={openSlots}
                         color='#fff'

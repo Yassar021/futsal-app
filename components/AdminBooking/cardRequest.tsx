@@ -59,7 +59,7 @@ const CardRequest = ({ request, fields, onAccept, onReject }: Props) => {
                         <Text mb='20px' fontSize={'18px'} fontWeight='600' letterSpacing={'0.02em'} color='#1B262C'>{team.name}</Text>
                         <Text fontSize={'16px'} fontWeight='400' letterSpacing={'0.02em'} color='#1B262C'>{date.date}</Text>
                         <Text fontSize={'16px'} fontWeight='400' letterSpacing={'0.02em'} color='#1B262C'>{date.time_start} - {date.time_end}</Text>
-                        <Text fontSize={'16px'} fontWeight='400' letterSpacing={'0.02em'} color='#1B262C'> Whatsapp : {team.phone}</Text>
+                        <WhatsappLink phone={team.phone} />
                     </Box>
                 </HStack>
                 <Box my='auto'>
