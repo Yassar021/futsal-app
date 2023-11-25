@@ -38,6 +38,7 @@ export type BookingSlot = {
     id: number;
     booking_id: number;
     date_start: string;
+    name: string;
 }
 
 export type VenueField = {

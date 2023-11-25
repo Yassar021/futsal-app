@@ -5,6 +5,7 @@ import { store } from "../store/index"
 import AuthProvider from '../services/AuthProvider/Provider';
 import { transitions, positions, Provider as AlertProvider } from 'react-alert'
 import AlertTemplate from 'react-alert-template-basic'
+import "../components/Timeslots/src/styles/main.scss"
 
 const alertOptions = {
   timeout: 5000,

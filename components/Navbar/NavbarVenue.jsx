@@ -28,8 +28,8 @@ const NavbarVenue = () => {
                             <Link href="/venue_admin/booking_request">
                                 <Text fontSize={'18px'} fontWeight='500' color={isActive("/venue_admin/booking_request") ? '#1B262C' : '#A0A8B1'}>Booking Request</Text>
                             </Link>
-                            <Link href="/AdminSparing">
-                                <Text fontSize={'18px'} fontWeight='500' color={isActive("/venue_admin") ? '#1B262C' : '#A0A8B1'}>Sparing List</Text>
+                            <Link href="/venue_admin/booking_slots">
+                                <Text fontSize={'18px'} fontWeight='500' color={isActive("/venue_admin/booking_slots") ? '#1B262C' : '#A0A8B1'}>Sparing List</Text>
                             </Link>
                         </Stack>
                         <Box my='auto'>

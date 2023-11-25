@@ -3,6 +3,7 @@ import { AlertDialog, AlertDialogBody, AlertDialogCloseButton, AlertDialogConten
 import { BookingRequest } from "../../types/challenge";
 import dayjs from "dayjs";
 import { VenueField } from "../../types/type";
+import WhatsappLink from "../Commons/WhatsappLink";
 
 
 type Props = {

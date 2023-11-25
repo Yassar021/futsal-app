@@ -52,7 +52,6 @@ const ModalVenue = ({ onClose, venueId, venueName }: Props) => {
                                 })
                             }
                         </Select>
-
                     </HStack>
                     {
                         isLoading ?

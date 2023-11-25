@@ -76,7 +76,7 @@ export default class Day extends React.Component {
         return timeslotDates.startDate.format() === selectedTimeslot.startDate.format();
       });
 
-      const isDisabled = disabledTimeslots.some((disabledTimeslot) => {
+      const isDisabled = disabledTimeslots.find((disabledTimeslot) => {
         return disabledTimeslot.startDate.isBetween(timeslotDates.startDate, timeslotDates.endDate, null, '[)') ||
                disabledTimeslot.endDate.isBetween(timeslotDates.startDate, timeslotDates.endDate, null, '(]');
       });
@@ -95,15 +95,16 @@ export default class Day extends React.Component {
       return (
         <Timeslot
           key = { index }
+          by={isDisabled?.by}
           description = { description }
-          onClick = { this._onTimeslotClick.bind(this, index) }
+          onClick = { this._onTimeslotClick.bind(this, index, isDisabled) }
           status = { status }
         />
       );
     });
   }
 
-  _onTimeslotClick(index) {
+  _onTimeslotClick(index, data) {
     const {
       timeslots,
       timeslotFormat,
@@ -116,7 +117,7 @@ export default class Day extends React.Component {
       endDate: momentTime.clone().add(timeslots[index][1], timeslotFormat),
     };
 
-    onTimeslotClick(timeslot);
+    onTimeslotClick(timeslot,data);
   }
 }
 

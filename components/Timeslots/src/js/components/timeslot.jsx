@@ -14,7 +14,7 @@ export default class Timeslot extends React.Component {
       description,
       status,
       customClassNames,
-      extraData
+      by
     } = this.props;
 
     const timeslotClassNames = classnames({
@@ -26,7 +26,13 @@ export default class Timeslot extends React.Component {
     return (
       <div className = { timeslotClassNames } onClick = { this._onTimeslotClick.bind(this) }>
         {
-          extraData ?? ""
+          by ? 
+          <>
+            {by}
+            <br />
+          </>
+          :
+          null
         }
         { description }
       </div>

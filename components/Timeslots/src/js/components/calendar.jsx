@@ -160,7 +160,9 @@ export default class Calendar extends React.Component {
     } = this.props;
 
     return disabledTimeslots.map((timeslot) => {
-      let timeslotMoment = Object.assign({}, timeslot);
+      let timeslotMoment = {
+        ...timeslot
+      };
       timeslotMoment.startDate = moment(timeslotMoment.startDate, timeslotMoment.format);
       timeslotMoment.endDate = moment(timeslotMoment.endDate, timeslotMoment.format);
 
@@ -168,7 +170,7 @@ export default class Calendar extends React.Component {
     });
   }
 
-  _onTimeslotClick(newTimeslot) {
+  _onTimeslotClick(newTimeslot,data) {
     const {
       selectedTimeslots,
     } = this.state;
@@ -202,7 +204,7 @@ export default class Calendar extends React.Component {
       currentDate: moment(newTimeslot.startDate),
     }, () => {
       // State was set:
-      onSelectTimeslot && onSelectTimeslot(newSelectedTimeslots, newTimeslot);
+      onSelectTimeslot && onSelectTimeslot(newSelectedTimeslots, newTimeslot,data);
     });
   }
 
