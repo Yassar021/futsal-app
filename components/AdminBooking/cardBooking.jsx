@@ -2,6 +2,7 @@ import { Box, Center, Flex, Image, Tab, TabIndicator, TabList, TabPanel, TabPane
 import CardList from "./cardList"
 import CardRequest from "./cardRequest"
 import RequestList from "./RequestList"
+import BookingList from "./BookingList"
 
 const CardBooking = () => {
     return( 
@@ -12,7 +13,7 @@ const CardBooking = () => {
                 </Center>
             </Box>
             <Flex px='60px' justifyContent={'center'} direction={'column'} mt='40px' gap='40px' >
-                <Tabs position="relative" variant="unstyled">
+                <Tabs isLazy position="relative" variant="unstyled">
                     <TabList>
                         <Tab>Request Booking List</Tab>
                         <Tab>Booking List</Tab>
@@ -27,9 +28,8 @@ const CardBooking = () => {
                         <TabPanel>
                             <RequestList />
                         </TabPanel>
-                        <TabPanel>
-                            <CardList final={'Accepted'} />
-                            <CardList final={'Rejected'} />
+                        <TabPanel >
+                            <BookingList />
                         </TabPanel>
                     </TabPanels>
                 </Tabs>

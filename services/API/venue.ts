@@ -1,4 +1,4 @@
-import { Challenge } from "../../types/challenge";
+import { BookingRequest, Challenge } from "../../types/challenge";
 import { AcceptBooking, PaginationRequest } from "../../types/request";
 import { PaginatedResponse } from "../../types/response";
 import { BookingSlot, VenueField } from "../../types/type";
@@ -34,4 +34,10 @@ export async function rejectVenueBookingRequests(venueId: number, challenge_id: 
     return baseFetcher(`/venues/${venueId}/booking_request/${challenge_id}/reject`,{
         method: "PUT"
     })
+}
+
+
+export async function getVenueBookingList(venueId: number, request: PaginationRequest): Promise<PaginatedResponse<BookingRequest>> {
+    const { page = 1, size = 10 } = request
+    return baseFetcher(`/venues/${venueId}/booking_list?page=${page}&size=${size}`);
 }
