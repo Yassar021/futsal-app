@@ -24,3 +24,13 @@ export type AcceptBooking = {
     field_id: number,
     description: string
 }
+
+
+export type BookingSubmit = {
+    field_id: number;
+	description: string;
+	by_name: string;
+	date_start: string;
+	date_end: string;
+	by_phone: string;
+}

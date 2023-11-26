@@ -1,4 +1,4 @@
-import { Box, Center, Container, Flex, HStack, Select, Spinner, Text } from "@chakra-ui/react"
+import { Box, Center, Container, Flex, HStack, Select, Spinner, Text, useDisclosure } from "@chakra-ui/react"
 import LayoutVenue from "../../layout/LayoutVenue"
 import { useEffect, useState } from "react";
 import { VenueField } from "../../types/type";
@@ -8,8 +8,11 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { VenueInfo, AccountType } from "../../types/user";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { fetchBookingSlots } from "../../store/reducers/bookingSlots";
+import { fetchAddBooking, fetchBookingSlots, fetchDeleteBooking, fetchUpdateBooking } from "../../store/reducers/bookingSlots";
 import dynamic from "next/dynamic";
+import BookingInfo from "./bookingInfo";
+import { BookingSubmit } from "../../types/request";
+import BookingAdd from "./bookingAdd";
 
 const CalenderSlot = dynamic(() => import("../Venue/CalenderSlot"), { ssr: false });
 
@@ -22,9 +25,13 @@ const AdminVenueSlots = () => {
         return null 
     })
 
+    const {isOpen: isBookingInfoOpen, onOpen: openBookingInfo, onClose: closeBookingInfo} = useDisclosure()
+    const { isOpen: isBookingAddOpen, onOpen: openBookingAdd, onClose: closeBookingAdd } = useDisclosure()
+
     const { isLoading, data: slots } = useAppSelector(state => state.bookingSlots);
     const dispatch = useAppDispatch();
 
+    const [selectedBookingId, setSelectedBookingId] = useState<number>(0);
     const [fields, setFields] = useState<VenueField[]>([]);
     const [selectedField, setSelectedFields] = useState<number>(0);
     
@@ -43,7 +50,34 @@ const AdminVenueSlots = () => {
 
 
     const handleSelectedSlot = (selecteds: [], selected: any,booking: any | undefined) => {
-        console.log(booking);
+        if (booking) {
+            setSelectedBookingId(booking.booking_id);
+            openBookingInfo();
+        }else{
+            openBookingAdd();
+        }
+    }
+
+
+    const handleUpdate = async (payload: BookingSubmit) => {
+        await dispatch(fetchUpdateBooking({
+            booking_id: selectedBookingId,
+            payload: payload
+        }))
+        await dispatch(fetchBookingSlots({venueId: venue.id, fieldId: selectedField}))
+    }
+
+    const handleDelete = async (booking_id: number) => {
+        await dispatch(fetchDeleteBooking(booking_id));
+        setSelectedBookingId(0);
+        closeBookingInfo();
+        await dispatch(fetchBookingSlots({venueId: venue.id, fieldId: selectedField}))
+    }
+
+    const handleAdd = async (payload: BookingSubmit ) => {
+        await dispatch(fetchAddBooking(payload));
+        await dispatch(fetchBookingSlots({venueId: venue.id, fieldId: selectedField}))
+        closeBookingAdd();
     }
 
     return(
@@ -74,6 +108,12 @@ const AdminVenueSlots = () => {
                     }
                 </Flex>
             </Box>
+            {
+                isBookingInfoOpen && <BookingInfo onDelete={handleDelete} onUpdate={handleUpdate} fields={fields} booking_id={selectedBookingId} onClose={closeBookingInfo} />
+            }
+            {
+                isBookingAddOpen && <BookingAdd onAdd={handleAdd} fields={fields} onClose={closeBookingAdd} />
+            }
             </Container>
         </LayoutVenue>
     )

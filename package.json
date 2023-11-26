@@ -29,6 +29,7 @@
     "react-calendar": "^4.3.0",
     "react-calendar-datetime-picker": "^1.6.3",
     "react-dom": "18.2.0",
+    "react-hook-form": "^7.48.2",
     "react-redux": "^8.1.2",
     "react-timeslot-calendar": "^0.2.0",
     "sass": "^1.69.5"
