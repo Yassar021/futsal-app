@@ -57,9 +57,9 @@ const ModalSaran = ({ onClose, gameId }: Props) => {
                             list.length ?
                                 <>
                                     {
-                                        list.map(item => {
+                                        list.map((item,key) => {
                                             return (
-                                                <Box>
+                                                <Box key={key}>
                                                     <Text mb='16px' fontSize={'18px'} fontWeight='700' color='#1B262C'>{item.team.name}</Text>
                                                     <Box padding={'20px'} width={'100%'} height={'150px'} bgColor={'#D7DAE8'}>
                                                         <Text fontSize={'14px'} fontWeight='700' color='#1B262C'>{item.review}</Text>

@@ -38,7 +38,7 @@ const Schedule = () => {
                     <Flex direction={'column'} gap='40px' pb='40px'>
                         {
                             list.map((schedule,key) => {
-                                return <CardMatch {...schedule} />
+                                return <CardMatch key={key} {...schedule} />
                             })
                         }        
                     </Flex>

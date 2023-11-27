@@ -48,7 +48,7 @@ const ModalVenue = ({ onClose, venueId, venueName }: Props) => {
                         <Select value={selectedField} disabled={isLoading} onChange={e => setSelectedFields(parseInt(e.target.value))} placeholder="Pilih Lapangan">
                             {
                                 fields.map((field) => {
-                                    return <option value={field.id}>{`${field.name} - ${field.type.name}`}</option>
+                                    return <option key={field.id} value={field.id}>{`${field.name} - ${field.type.name}`}</option>
                                 })
                             }
                         </Select>

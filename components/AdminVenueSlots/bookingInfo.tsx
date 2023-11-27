@@ -182,7 +182,7 @@ function BookingInfo({ onClose, booking_id, fields, onUpdate, onDelete }: Props)
                                             <Select {...register("field_id")} >
                                                 {
                                                     fields.map((field) => {
-                                                        return <option value={field.id}>{`${field.name} - ${field.type.name}`}</option>
+                                                        return <option key={field.id} value={field.id}>{`${field.name} - ${field.type.name}`}</option>
                                                     })
                                                 }
                                             </Select>

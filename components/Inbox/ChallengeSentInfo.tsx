@@ -147,7 +147,7 @@ function ChallengeSentInfo({ isOpen, onClose, challengeId, onDelete }: Props) {
                                                 <Select value={fieldId} disabled={isLoading} onChange={e => setFieldId(parseInt(e.target.value))} placeholder="Tentukan Tempat">
                                                     {
                                                         fields.map((field) => {
-                                                            return <option value={field.id}>{field.label}</option>
+                                                            return <option key={field.id} value={field.id}>{field.label}</option>
                                                         })
                                                     }
                                                 </Select>

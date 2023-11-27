@@ -106,7 +106,7 @@ const CardRequest = ({ request, fields, onAccept, onReject }: Props) => {
                                 <Select w={"50%"} value={selectedField} disabled={isLoading} onChange={e => setSelectedFields(parseInt(e.target.value))} placeholder="Pilih Lapangan">
                                     {
                                         fields.map((field) => {
-                                            return <option value={field.id}>{`${field.name} - ${field.type.name}`}</option>
+                                            return <option key={field.id} value={field.id}>{`${field.name} - ${field.type.name}`}</option>
                                         })
                                     }
                                 </Select>

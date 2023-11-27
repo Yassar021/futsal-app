@@ -34,7 +34,7 @@ function BookingList() {
         <div>
             {
                 list.map((item) => (
-                    <CardList request={item} />
+                    <CardList key={item.id} request={item} />
                 ))
             }
             {

@@ -83,7 +83,7 @@ function BookingAdd({ onClose, fields, onAdd }: Props) {
                             <Select {...register("field_id")} >
                                 {
                                     fields.map((field) => {
-                                        return <option value={field.id}>{`${field.name} - ${field.type.name}`}</option>
+                                        return <option key={field.id} value={field.id}>{`${field.name} - ${field.type.name}`}</option>
                                     })
                                 }
                             </Select>
