@@ -23,6 +23,10 @@ const LoginVenue = () => {
         if (loginResult?.errors) {
             setError(loginResult.message)    
         }
+
+        if (loginResult?.error) {
+            setError(loginResult?.error)    
+        }
         setLoading(false)
     }
 
