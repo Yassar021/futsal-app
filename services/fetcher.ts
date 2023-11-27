@@ -11,6 +11,8 @@ export function baseFetcher(path: string, config: RequestInit = {method: "GET"})
         ...requestHeader
     }
 
+    console.log(requestHeader,headers);
+
     if (token) {
         headers["Authorization"] = "Bearer " + token
     }

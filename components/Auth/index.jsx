@@ -92,7 +92,7 @@ const Login = () => {
                                 <Text color='#0F4C75' fontSize='16px' fontWeight={'700'}>Registrasi Tim</Text>
                             </Link>
                             <Text>||</Text>
-                            <Link href='/AdminVenue' >
+                            <Link href='/venue_admin/register' >
                                 <Text color='#0F4C75' fontSize='16px' fontWeight={'700'}>Registrasi Venue</Text>
                             </Link>
                         </HStack>

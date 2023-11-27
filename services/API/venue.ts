@@ -1,7 +1,8 @@
+import { API_BASE_URL } from "../../config";
 import { BookingInfo } from "../../types/booking";
 import { BookingRequest, Challenge } from "../../types/challenge";
-import { AcceptBooking, BookingSubmit, PaginationRequest } from "../../types/request";
-import { PaginatedResponse } from "../../types/response";
+import { AcceptBooking, BookingSubmit, PaginationRequest, RegisterVenueRequest } from "../../types/request";
+import { PaginatedResponse, ValidationError } from "../../types/response";
 import { BookingSlot, VenueField } from "../../types/type";
 import { VenueInfo } from "../../types/user";
 import { baseFetcher } from "../fetcher";
@@ -66,4 +67,27 @@ export async function deleteBooking(booking_id: number): Promise<any> {
     return baseFetcher(`/bookings/${booking_id}`,{
         method: "DELETE"
     });
+}
+
+export async function registerVenue(payload: RegisterVenueRequest): Promise<any | ValidationError> {    
+    const form = new FormData();
+    
+    for (const field_name in payload) {
+        if (field_name === "profile_picture") {
+            continue;
+        }
+        form.append(field_name, payload[field_name])
+    }
+
+    form.append("profile_picture",payload.profile_picture);
+
+
+
+    return fetch(`${API_BASE_URL}/auth/venue/register`, {
+        method: "POST",
+        body: form,
+        headers: {
+            "accept": "application/json"
+        }
+    }).then(res => res.json())
 }

@@ -34,3 +34,28 @@ export type BookingSubmit = {
 	date_end: string;
 	by_phone: string;
 }
+
+
+export type RegisterTeamRequest = {
+    name: string;
+    address: string;
+    est_year: string;
+    description: string;
+    coach_name: string;
+    phone: string;
+    email: string;
+    password: string;
+    profile_picture: File;
+}
+
+
+export type RegisterVenueRequest = {
+    name: string;
+    address: string;
+    est_year: string;
+    owner_name: string;
+    phone: string;
+    email: string;
+    password: string;
+    profile_picture: File;
+}
