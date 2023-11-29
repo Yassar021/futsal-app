@@ -34,8 +34,11 @@ const LoginVenue = () => {
         <LayoutLogin pageTitle={"Login"}>
             <Flex direction={'column'} gap='40px' alignItems={'center'}>
                 <Text fontSize={{base:'24px',sm:'32px',md:'40px'}} fontWeight='700' color={'#000'}>MATCHMAKING FUTSAL</Text>
+
                 
                 <Image maxWidth={'200px'} height={'200px'} src='/bg-login.png' alt='bg-login' />
+                
+                <Text fontSize={{base:'14px',sm:'22px',md:'30px'}} fontWeight='700' color={'#000'}>Login Venue</Text>
                 
                 {
                     error ? <Text color={"red"}>{error}</Text> : null
@@ -95,6 +98,10 @@ const LoginVenue = () => {
                         <HStack spacing='4px'>
                             <Link href='/Register' >
                                 <Text color='#0F4C75' fontSize='16px' fontWeight={'700'}>Registrasi Tim</Text>
+                            </Link>
+                            <Text>||</Text>
+                            <Link href='/' >
+                                <Text color='#0F4C75' fontSize='16px' fontWeight={'700'}>Login Team</Text>
                             </Link>
                             <Text>||</Text>
                             <Link href='/venue_admin/register' >

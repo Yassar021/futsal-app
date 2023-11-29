@@ -35,7 +35,7 @@ const Login = () => {
                 <Text fontSize={{base:'24px',sm:'32px',md:'40px'}} fontWeight='700' color={'#000'}>MATCHMAKING FUTSAL</Text>
                 
                 <Image maxWidth={'200px'} height={'200px'} src='/bg-login.png' alt='bg-login' />
-                
+                <Text fontSize={{base:'14px',sm:'22px',md:'30px'}} fontWeight='700' color={'#000'}>Login Team</Text>
                 {
                     error ? <Text color={"red"}>{error}</Text> : null
                 }
@@ -98,6 +98,10 @@ const Login = () => {
                             <Text>||</Text>
                             <Link href='/venue_admin/register' >
                                 <Text color='#0F4C75' fontSize='16px' fontWeight={'700'}>Registrasi Venue</Text>
+                            </Link>
+                            <Text>||</Text>
+                            <Link href='/venue_admin/login' >
+                                <Text color='#0F4C75' fontSize='16px' fontWeight={'700'}>Login Venue</Text>
                             </Link>
                         </HStack>
                     </Stack>
