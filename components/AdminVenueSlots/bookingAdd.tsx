@@ -1,9 +1,10 @@
 import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, ModalFooter, VStack, HStack, Input, Text, Select, Textarea, Button, Stack } from '@chakra-ui/react'
 import React, { useState } from 'react'
-import { useForm } from 'react-hook-form'
+import { Controller, useForm } from 'react-hook-form'
 import { VenueField } from '../../types/type';
 import dayjs from 'dayjs';
 import { BookingSubmit } from '../../types/request';
+import TimePicker from '../Commons/TimePicker';
 
 
 type Props = {
@@ -23,8 +24,8 @@ type BookingForm = {
 }
 
 function BookingAdd({ onClose, fields, onAdd }: Props) {
-    const { register, handleSubmit, setValue } = useForm<BookingForm>();
-    const [isLoading,setLoading] = useState(false); 
+    const { register, handleSubmit, setValue, getValues, control } = useForm<BookingForm>();
+    const [isLoading, setLoading] = useState(false);
 
     const handleAdd = async (values: BookingForm) => {
         setLoading(true);
@@ -60,18 +61,34 @@ function BookingAdd({ onClose, fields, onAdd }: Props) {
                         <HStack >
                             <Text w={"50%"} fontSize={'16px'} fontWeight='600' color='#1B262C'>Jam</Text>
                             <HStack>
-                                <Input w={"100%"} type="time" {...register("time_start")}
-                                    onChange={e => {
-                                        const [hour] = e.target.value.split(":")
-                                        setValue("time_start", `${hour}:00`)
-                                    }}
+                                <Controller
+                                    control={control}
+                                    name='time_start'
+                                    render={({ field }) => (
+                                        <TimePicker w={"100%"}
+                                            value={field.value}
+                                            onChange={e => {
+                                                const [hour] = e.target.value.split(":")
+                                                field.onChange(`${hour}:00`);
+                                            }}
+                                        />
+                                    )}
                                 />
-                                <Input w={"100%"} type="time" {...register("time_end")}
-                                    onChange={e => {
-                                        const [hour] = e.target.value.split(":")
-                                        setValue("time_end", `${hour}:00`)
-                                    }}
+
+                                <Controller 
+                                    control={control}
+                                    name='time_end'
+                                    render={({field}) => (
+                                        <TimePicker w={"100%"}
+                                            value={field.value}
+                                            onChange={e => {
+                                                const [hour] = e.target.value.split(":")
+                                                field.onChange(`${hour}:00`)
+                                            }}
+                                        />
+                                    )}
                                 />
+
                             </HStack>
                         </HStack>
                         <HStack >
@@ -94,28 +111,28 @@ function BookingAdd({ onClose, fields, onAdd }: Props) {
                         </HStack>
                     </VStack>
                 </ModalBody>
-            <ModalFooter>
-                <Stack direction={'row'}>
-                    <Button bgColor={'#EB5757'} color='#fff' _hover={{ bg: '#EB5757' }}
-                        _active={{
-                            bg: '#EB5757',
-                            transform: 'scale(0.98)',
-                        }} mr={3}
-                        onClick={onClose}
-                    >
-                        Cancel
-                    </Button>
-                    <Button bgColor={'#2DCC70'} color='#fff' _hover={{ bg: '#2DCC70' }}
-                        _active={{
-                            bg: '#2DCC70',
-                            transform: 'scale(0.98)',
-                        }} mr={3}
-                        onClick={handleSubmit(handleAdd)}
-                    >
-                        Simpan
-                    </Button>
-                </Stack>
-            </ModalFooter>
+                <ModalFooter>
+                    <Stack direction={'row'}>
+                        <Button bgColor={'#EB5757'} color='#fff' _hover={{ bg: '#EB5757' }}
+                            _active={{
+                                bg: '#EB5757',
+                                transform: 'scale(0.98)',
+                            }} mr={3}
+                            onClick={onClose}
+                        >
+                            Cancel
+                        </Button>
+                        <Button bgColor={'#2DCC70'} color='#fff' _hover={{ bg: '#2DCC70' }}
+                            _active={{
+                                bg: '#2DCC70',
+                                transform: 'scale(0.98)',
+                            }} mr={3}
+                            onClick={handleSubmit(handleAdd)}
+                        >
+                            Simpan
+                        </Button>
+                    </Stack>
+                </ModalFooter>
             </ModalContent>
         </Modal>
     )

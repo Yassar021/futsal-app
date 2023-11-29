@@ -7,6 +7,7 @@ import { getOptionFields } from '../../services/API/fields';
 import { UpdateChallengeRequest } from '../../types/request';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { deleteChallenge, setSelectedChallenge, updateChallenge } from '../../store/reducers/challengeSent';
+import TimePicker from '../Commons/TimePicker';
 
 
 type Props = {
@@ -125,9 +126,8 @@ function ChallengeSentInfo({ isOpen, onClose, challengeId, onDelete }: Props) {
                                         <Text w={"50%"} fontSize={'16px'} fontWeight='600' color='#1B262C'>Time</Text>
                                         {
                                             isEditing ?
-                                                <Input
+                                                <TimePicker
                                                     my={"6px"}
-                                                    type="time"
                                                     value={time}
                                                     placeholder="Tentukan Waktu"
                                                     onChange={e => {

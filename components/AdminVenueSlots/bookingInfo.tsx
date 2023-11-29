@@ -4,9 +4,10 @@ import { BookingInfo } from '../../types/booking';
 import { getBookingInfo } from '../../services/API/venue';
 import dayjs from 'dayjs';
 import WhatsappLink from '../Commons/WhatsappLink';
-import { SubmitHandler, useForm } from "react-hook-form";
+import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { VenueField } from '../../types/type';
 import { BookingSubmit } from '../../types/request';
+import TimePicker from '../Commons/TimePicker';
 
 type Props = {
     onClose: () => void;
@@ -28,7 +29,7 @@ type BookingForm = {
 
 function BookingInfo({ onClose, booking_id, fields, onUpdate, onDelete }: Props) {
 
-    const { register, handleSubmit, setValue } = useForm<BookingForm>();
+    const { register, handleSubmit, setValue, control } = useForm<BookingForm>();
 
     const alertRef = useRef();
     const { isOpen: isAlertOpen, onOpen: openAlert, onClose: closeAlert } = useDisclosure();
@@ -149,18 +150,35 @@ function BookingInfo({ onClose, booking_id, fields, onUpdate, onDelete }: Props)
                                         {
                                             isEditing ?
                                                 <HStack>
-                                                    <Input w={"100%"} type="time" {...register("time_start")}
-                                                        onChange={e => {
-                                                            const [hour, minute] = e.target.value.split(":")
-                                                            setValue("time_start",`${hour}:00`)
-                                                        }}
+                                                    <Controller 
+                                                        name='time_start'
+                                                        control={control}
+                                                        render={({field}) => (
+                                                            <TimePicker w={"100%"}
+                                                                value={field.value}
+                                                                onChange={e => {
+                                                                    const [hour, minute] = e.target.value.split(":")
+                                                                    console.log(e.target.value)
+                                                                    field.onChange(`${hour}:00`);
+                                                                }}
+                                                            />
+                                                        )}
                                                     />
-                                                    <Input w={"100%"} type="time" {...register("time_end")} 
-                                                        onChange={e => {
-                                                            const [hour, minute] = e.target.value.split(":")
-                                                            setValue("time_end",`${hour}:00`)
-                                                        }}
+
+                                                    <Controller 
+                                                        control={control}
+                                                        name='time_end'
+                                                        render={({field}) => (
+                                                            <TimePicker w={"100%"}
+                                                                value={field.value} 
+                                                                onChange={e => {
+                                                                    const [hour, minute] = e.target.value.split(":")
+                                                                    field.onChange(`${hour}:00`)
+                                                                }}
+                                                            />
+                                                        )}
                                                     />
+                                                    
                                                 </HStack>
                                                 :
                                                 <Text w={"50%"} fontSize={'16px'} fontWeight='500' color='#1B262C'>{`${bookedTime.time_start} - ${bookedTime.time_end}`}</Text>
