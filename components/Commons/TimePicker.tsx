@@ -2,8 +2,13 @@ import { InputProps, Select, SelectProps } from '@chakra-ui/react'
 import * as _chakra_ui_system from '@chakra-ui/system';
 import React, { useMemo } from 'react'
 
-type Props = _chakra_ui_system.ComponentWithAs<"input", InputProps> & {
-    value: string
+type Props = {
+    value: string;
+    w?: string;
+    my?: string;
+    onChange?: (e: any) => void;
+    disabled?: boolean;
+    placeholder?: string;
 };
 
 function TimePicker(props: Props) {
