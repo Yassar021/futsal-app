@@ -131,7 +131,7 @@ const RegisterVenue = () => {
                     <Text color={'#1B262C'} fontSize='16px' fontWeight={'700'}>
                         Sudah punya akun?
                     </Text>
-                    <Link href='/' >
+                    <Link href='/venue_admin/login' >
                         <Text color='#0F4C75' fontSize='16px' fontWeight={'700'}>Login</Text>
                     </Link>
                 </Stack>

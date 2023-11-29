@@ -2,6 +2,7 @@ import { Button, Input, Modal, ModalBody, ModalCloseButton, Box, ModalContent, M
 import React, { useEffect, useState } from 'react'
 import { getOptionFields } from '../../services/API/fields';
 import { CreateChallengeRequest } from '../../types/request';
+import TimePicker from '../Commons/TimePicker';
 
 type Props = {
     isOpen: boolean;
@@ -86,10 +87,8 @@ function ChallengeRequestModal({ isOpen, onClose, onConfirm, teamName, teamId }:
                                     </Td>
                                     <Td>
                                         <Input disabled={isLoading} onChange={(e) => setDate(e.target.value)} type="date" placeholder="Tentukan Hari" /> <br />
-                                        <Input
+                                        <TimePicker
                                             my={"6px"}
-                                            type="time"
-                                            placeholder="Tentukan Waktu"
                                             value={time}
                                             onChange={e => {
                                                 const [hour, minute] = e.target.value.split(":")
