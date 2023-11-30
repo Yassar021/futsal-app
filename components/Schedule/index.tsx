@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Box, Container, Flex, Spinner } from "@chakra-ui/react"
+import { Box, Container, Flex, Spinner, VStack } from "@chakra-ui/react"
 import LayoutUser from "../../layout/LayoutUser"
 import CardMatch from "../Homepage/cardMatch"
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
@@ -33,7 +33,7 @@ const Schedule = () => {
             <Container maxW='6xl'>
                 {
                     isLoading ?
-                    <Spinner />
+                    <VStack><Spinner /></VStack>
                     :
                     <Flex direction={'column'} gap='40px' pb='40px'>
                         {

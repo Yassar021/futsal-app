@@ -50,7 +50,7 @@ function ChallengeReceivedInfo({ isOpen, challengeId, onClose, onAccept, onRejec
             <ModalContent>
                 {
                     isLoading && (challenge === null) ?
-                        <Spinner />
+                    <VStack><Spinner /></VStack>
                         :
                         <>
                             <ModalHeader>{`${challenge?.away_team.name} vs ${challenge?.home_team.name}`}</ModalHeader>

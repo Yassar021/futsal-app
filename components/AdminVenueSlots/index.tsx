@@ -1,4 +1,4 @@
-import { Box, Center, Container, Flex, HStack, Select, Spinner, Text, useDisclosure } from "@chakra-ui/react"
+import { Box, Center, Container, Flex, HStack, Select, Spinner, Text, VStack, useDisclosure } from "@chakra-ui/react"
 import LayoutVenue from "../../layout/LayoutVenue"
 import { useEffect, useState } from "react";
 import { VenueField } from "../../types/type";
@@ -102,7 +102,7 @@ const AdminVenueSlots = () => {
                     </HStack>
                     {
                         isLoading ?
-                            <Spinner />
+                            <VStack><Spinner /></VStack>
                             :
                             <CalenderSlot onSelect={handleSelectedSlot} slots={slots.map(item => ({date_start: item.date_start, by: item.name, booking_id: item.booking_id}))} />
                     }

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '../../store/hooks'
 import { acceptBookingRequests, fetchBookingRequests, fetchVenueFields, rejectBookingRequest } from '../../store/reducers/bookingRequests';
-import { Spinner } from '@chakra-ui/react';
+import { Spinner, VStack } from '@chakra-ui/react';
 import CardRequest from './cardRequest';
 
 function RequestList() {
@@ -43,7 +43,7 @@ function RequestList() {
                 })
             }
             {
-                isLoading && <Spinner />
+                isLoading && <VStack><Spinner /></VStack>
             }
         </div>
     )

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '../../store/hooks'
-import { Spinner } from '@chakra-ui/react';
+import { Spinner, VStack } from '@chakra-ui/react';
 import CardList from './cardList';
 import { fetchInitialList, fetchNextPageList } from '../../store/reducers/bookingList';
 import useScroll from '../../utils/useScroll';
@@ -38,7 +38,7 @@ function BookingList() {
                 ))
             }
             {
-                isLoading && <Spinner />
+                isLoading && <VStack><Spinner /></VStack>
             }
         </div>
     )

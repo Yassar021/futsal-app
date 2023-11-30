@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Container, Flex, Spinner } from "@chakra-ui/react";
+import { Container, Flex, Spinner, VStack } from "@chakra-ui/react";
 import LayoutUser from "../../layout/LayoutUser";
 import CardHistory from "./cardHistory";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
@@ -23,7 +23,7 @@ const History = () => {
             })
           }
           {
-            isLoading ?? <Spinner />
+            isLoading ?? <VStack><Spinner /></VStack>
           }
         </Flex>
       </Container>

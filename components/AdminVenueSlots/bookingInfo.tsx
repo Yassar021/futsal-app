@@ -124,7 +124,7 @@ function BookingInfo({ onClose, booking_id, fields, onUpdate, onDelete }: Props)
                     <ModalBody>
                         {
                             isLoading ?
-                                <Spinner />
+                            <VStack><Spinner /></VStack>
                                 :
                                 <VStack mb={"20px"} align={'stretch'} spacing={15}>
                                     <HStack >
