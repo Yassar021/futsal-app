@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { SimpleGrid, Spinner, useDisclosure } from "@chakra-ui/react"
+import { SimpleGrid, Spinner, VStack, useDisclosure } from "@chakra-ui/react"
 import { useAppDispatch, useAppSelector } from '../../store/hooks'
 import CardInbox from './cardInbox'
 import { ChallengeItem } from '../../types/challenge';
@@ -35,7 +35,7 @@ function ChallengeReceived() {
   }
 
   if (isLoading) {
-    return <Spinner />
+    return <VStack><Spinner /></VStack>
   }
 
   return (

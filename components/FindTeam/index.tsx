@@ -1,4 +1,4 @@
-import { Container, SimpleGrid, Spinner, useDisclosure } from "@chakra-ui/react";
+import { Container, SimpleGrid, Spinner, VStack, useDisclosure } from "@chakra-ui/react";
 import LayoutUser from "../../layout/LayoutUser";
 import CardFind from "./cardFind";
 import { useSelector } from "react-redux";
@@ -77,7 +77,7 @@ const FindTeam = () => {
             list.map((team: TeamInfo) => <CardFind key={team.id} {...team} onRequest={() => handleOpenRequestModal(team)} />)
           }
           {
-            isLoading ?? <Spinner />
+            isLoading ?? <VStack><Spinner /></VStack>
           }
         </SimpleGrid>
         {

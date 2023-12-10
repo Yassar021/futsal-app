@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Box, Container, Spinner } from "@chakra-ui/react"
+import { Box, Container, Spinner, VStack } from "@chakra-ui/react"
 import LayoutUser from "../../layout/LayoutUser"
 import CardVenue from "./cardVenue"
 import { FetchStatus } from "../../types/type";
@@ -34,7 +34,7 @@ const Venue = () => {
                     ))
                 }
                 {
-                    isLoading && <Spinner />
+                    isLoading && <VStack><Spinner /></VStack>
                 }
             </Container>
         </LayoutUser>
