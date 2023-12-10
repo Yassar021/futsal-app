@@ -18,6 +18,8 @@ export type VenueInfo = {
     owner_name: string,
     phone: string,
     profil_picture: string;
+    opening_hour: number;
+    closing_hour: number;
 }
 
 type TeamUserInfo = {
