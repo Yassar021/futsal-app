@@ -10,9 +10,11 @@ type Props = {
     phone: string;
     address: string;
     profil_picture: string;
+    closing_hour: number;
+    opening_hour: number;
 }
 
-const CardVenue = ({ id, name, owner_name, phone, address, profil_picture }: Props) => {
+const CardVenue = ({ id, name, owner_name, phone, address, profil_picture, closing_hour, opening_hour }: Props) => {
     const { isOpen: isOpenSlots, onOpen: openSlots, onClose: closeSlots } = useDisclosure()
 
     return (
@@ -52,6 +54,8 @@ const CardVenue = ({ id, name, owner_name, phone, address, profil_picture }: Pro
                             onClose={closeSlots}
                             venueId={id}
                             venueName={name}
+                            closing_hour={closing_hour}
+                            opening_hour={opening_hour}
                         />
                     }
                 </VStack>

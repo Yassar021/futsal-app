@@ -14,10 +14,11 @@ type Props = {
     onClose: () => void;
     venueName: string;
     venueId: number;
-
+    closing_hour: number;
+    opening_hour: number;
 }
 
-const ModalVenue = ({ onClose, venueId, venueName }: Props) => {
+const ModalVenue = ({ onClose, venueId, venueName, closing_hour, opening_hour }: Props) => {
 
     const { isLoading, data: slots } = useAppSelector(state => state.bookingSlots);
     const [fields, setFields] = useState<VenueField[]>([]);
@@ -57,7 +58,7 @@ const ModalVenue = ({ onClose, venueId, venueName }: Props) => {
                         isLoading ?
                             <Spinner />
                             :
-                            <CalenderSlot slots={slots} />
+                            <CalenderSlot closing_hour={closing_hour} opening_hour={opening_hour} slots={slots} />
                     }
                 </ModalBody>
                 <ModalFooter>
