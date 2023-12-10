@@ -1,17 +1,19 @@
-import { Box, Center, Flex, Image, Text } from "@chakra-ui/react"
+import { Box, Button, Center, Flex, Image, Text } from "@chakra-ui/react"
 import React from "react"
 import { useSelector } from "react-redux"
 import { RootState } from "../../store"
 import { VenueInfo, AccountType } from "../../types/user"
+import { useRouter } from "next/router"
 
 const CardVenue = () => {
+    const router = useRouter()
     const venue: VenueInfo | null = useSelector((state: RootState) => {
         if (state.account.userInfo?.type === AccountType.VENUE) {
             return state.account.userInfo.data
         }
-        return null 
+        return null
     })
-    return( 
+    return (
         <Box mb='60px' borderRadius={'5px'} shadow='xl' bgColor={'#fff'} width={'100%'} height='310px'>
             <Box borderRadius={'5px'} width={'100%'} height='60px' bgColor='#1B262C' py='16px'>
                 <Center>
@@ -26,6 +28,25 @@ const CardVenue = () => {
                     <Text fontSize={'16px'} fontWeight='400' letterSpacing={'0.02em'} color='#1B262C'> Whatsapp : {venue?.phone}</Text>
                 </Box>
             </Flex>
+            <Center>
+                <Button
+                    onClick={() => router.push("/venue_admin/edit")}
+                    color='#fff'
+                    fontFamily={'DM Sans'}
+                    bgColor={'#0F4C75'}
+                    width='140px'
+                    height={'40px'}
+                    _hover={{ bg: '#0F4C75' }}
+                    fontSize={'14px'}
+                    fontWeight={'500'}
+                    _active={{
+                        bg: '#0F4C75',
+                        transform: 'scale(0.98)',
+                    }}
+                >
+                    Edit
+                </Button>
+            </Center>
         </Box>
     )
 }

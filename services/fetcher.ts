@@ -7,8 +7,11 @@ export function baseFetcher(path: string, config: RequestInit = {method: "GET"})
     const requestHeader = config.headers ?? {}
     const headers = {
         "accept": "application/json",
-        "content-type": "application/json",
         ...requestHeader
+    }
+
+    if (!(config.body instanceof FormData)) {
+        headers["content-type"] = "application/json"
     }
 
     console.log(requestHeader,headers);

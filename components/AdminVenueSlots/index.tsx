@@ -104,7 +104,7 @@ const AdminVenueSlots = () => {
                         isLoading ?
                             <Spinner />
                             :
-                            <CalenderSlot onSelect={handleSelectedSlot} slots={slots.map(item => ({date_start: item.date_start, by: item.name, booking_id: item.booking_id}))} />
+                            <CalenderSlot closing_hour={venue.closing_hour} opening_hour={venue.opening_hour} onSelect={handleSelectedSlot} slots={slots.map(item => ({date_start: item.date_start, by: item.name, booking_id: item.booking_id}))} />
                     }
                 </Flex>
             </Box>

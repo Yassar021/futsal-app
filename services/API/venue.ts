@@ -91,3 +91,16 @@ export async function registerVenue(payload: RegisterVenueRequest): Promise<any 
         }
     }).then(res => res.json())
 }
+
+export async function updateVenue(payload: Partial<VenueInfo | {profil_picture: string | File}>): Promise<any | ValidationError> {
+    const form = new FormData();
+    
+    for (const field_name in payload) {
+        form.append(field_name, payload[field_name])
+    }
+
+    return baseFetcher(`/me/venue`, {
+        method: "POST",
+        body: form,
+    })
+}
