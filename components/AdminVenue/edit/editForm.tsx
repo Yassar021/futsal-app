@@ -20,6 +20,7 @@ import { updateVenue } from '../../../services/API/venue';
 import { useAlert } from "react-alert";
 import { useRouter } from 'next/router';
 import { ValidationError } from '../../../types/response';
+import { useUser } from '../../../services/AuthProvider/hooks';
 
 
 type EditForm = {
@@ -45,6 +46,8 @@ function EditForm() {
     }
     return null
   })
+
+  const { refetch: fetchUserInfo } = useUser()
 
   const { register, handleSubmit, setValue, getValues, control, setError, formState } = useForm<EditForm>({
     defaultValues: {
@@ -78,6 +81,7 @@ function EditForm() {
       alert.show("Data berhasil disimpan",{
         type: "success",
       });
+      fetchUserInfo();
       router.push("/venue_admin");
     }
 

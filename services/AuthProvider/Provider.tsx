@@ -53,13 +53,21 @@ const AuthProvider = ({ children }) => {
         dispatch(clearAccount())
     }
 
+    const fetchUserInfo = () => {
+        getAccountInfo().then((userInfo) => {
+            dispatch(setAccount(userInfo))
+            dispatch(setFetchingDone())
+        })
+    }
+
     const contextValue = useMemo(() => {
         return {
             isLogged,
             token,
             type: accountType,
             login,
-            logout
+            logout,
+            fetchUserInfo
         }
     },[isLogged, token,accountType])
 
@@ -69,10 +77,7 @@ const AuthProvider = ({ children }) => {
         if (savedToken) {
             setLogged(true)
             setToken(savedToken)
-            getAccountInfo().then((userInfo) => {
-                dispatch(setAccount(userInfo))
-                dispatch(setFetchingDone())
-            })
+            fetchUserInfo();
         }else{
             dispatch(setFetchingDone())
         }

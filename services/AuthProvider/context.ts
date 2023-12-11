@@ -8,6 +8,7 @@ type TAuthContext = {
     type: AccountType | undefined;
     login: (username: string, password: string, type: AccountType) => Promise<any>;
     logout: () => void;
+    fetchUserInfo: () => void
 }
 
 export const AuthContext = createContext<TAuthContext>({
@@ -15,5 +16,6 @@ export const AuthContext = createContext<TAuthContext>({
     isLogged: false,
     type: undefined,
     login: () => new Promise(() => ({})),
-    logout: () => {}
+    logout: () => {},
+    fetchUserInfo: () => {}
 })

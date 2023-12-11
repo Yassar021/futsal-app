@@ -14,12 +14,13 @@ export function useLogout() {
     return ctx.logout
 }
 
-export function useUser(): UserSession {
+export function useUser(): UserSession & {refetch: () => void} {
     const ctx = useContext(AuthContext);
 
     return {
         isLogged: ctx.isLogged,
         token: ctx.token,
-        type: ctx.type
+        type: ctx.type,
+        refetch: ctx.fetchUserInfo,
     }
 }
