@@ -53,3 +53,16 @@ export async function registerTeam(payload: RegisterTeamRequest): Promise<any | 
         }
     }).then(res => res.json())
 }
+
+export async function updateTeam(payload: Partial<TeamInfo | {profile_picture: string | File}>): Promise<any | ValidationError> {
+    const form = new FormData();
+    
+    for (const field_name in payload) {
+        form.append(field_name, payload[field_name])
+    }
+
+    return baseFetcher(`/me/team`, {
+        method: "POST",
+        body: form,
+    })
+}

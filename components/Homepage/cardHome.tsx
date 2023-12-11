@@ -1,10 +1,14 @@
 import React from "react";
-import { Box, Center, Flex, Image, Text } from "@chakra-ui/react"
+import { Box, Button, Center, Flex, Image, Text } from "@chakra-ui/react"
 import { useSelector } from "react-redux"
 import { RootState } from "../../store";
 import { AccountType, TeamInfo } from "../../types/user";
+import { useRouter } from "next/router";
 
 const CardHome = () => {
+
+    const router = useRouter()
+
     const team: TeamInfo | null = useSelector((state: RootState) => {
         if (state.account.userInfo?.type === AccountType.TEAM) {
             return state.account.userInfo.data
@@ -26,6 +30,25 @@ const CardHome = () => {
                     <Text fontSize={'16px'} fontFamily='400' letterSpacing={'0.02em'} color='#1B262C'>{team?.description}</Text>
                 </Box>
             </Flex>
+            <Center>
+                <Button
+                    onClick={() => router.push("/edit")}
+                    color='#fff'
+                    fontFamily={'DM Sans'}
+                    bgColor={'#0F4C75'}
+                    width='140px'
+                    height={'40px'}
+                    _hover={{ bg: '#0F4C75' }}
+                    fontSize={'14px'}
+                    fontWeight={'500'}
+                    _active={{
+                        bg: '#0F4C75',
+                        transform: 'scale(0.98)',
+                    }}
+                >
+                    Edit
+                </Button>
+            </Center>
         </Box>
     )
 }

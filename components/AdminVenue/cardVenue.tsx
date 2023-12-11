@@ -1,4 +1,4 @@
-import { Box, Button, Center, Flex, Image, Text } from "@chakra-ui/react"
+import { Box, Button, Center, Flex, HStack, Image, Text } from "@chakra-ui/react"
 import React from "react"
 import { useSelector } from "react-redux"
 import { RootState } from "../../store"
@@ -29,23 +29,44 @@ const CardVenue = () => {
                 </Box>
             </Flex>
             <Center>
-                <Button
-                    onClick={() => router.push("/venue_admin/edit")}
-                    color='#fff'
-                    fontFamily={'DM Sans'}
-                    bgColor={'#0F4C75'}
-                    width='140px'
-                    height={'40px'}
-                    _hover={{ bg: '#0F4C75' }}
-                    fontSize={'14px'}
-                    fontWeight={'500'}
-                    _active={{
-                        bg: '#0F4C75',
-                        transform: 'scale(0.98)',
-                    }}
-                >
-                    Edit
-                </Button>
+                <HStack>
+
+                    <Button
+                        onClick={() => router.push("/venue_admin/edit")}
+                        color='#fff'
+                        fontFamily={'DM Sans'}
+                        bgColor={'#0F4C75'}
+                        width='140px'
+                        height={'40px'}
+                        _hover={{ bg: '#0F4C75' }}
+                        fontSize={'14px'}
+                        fontWeight={'500'}
+                        _active={{
+                            bg: '#0F4C75',
+                            transform: 'scale(0.98)',
+                        }}
+                    >
+                        Edit
+                    </Button>
+
+                    <Button
+                        onClick={() => router.push("/venue_admin/fields")}
+                        color='#fff'
+                        fontFamily={'DM Sans'}
+                        bgColor={'#0F4C75'}
+                        width='140px'
+                        height={'40px'}
+                        _hover={{ bg: '#0F4C75' }}
+                        fontSize={'14px'}
+                        fontWeight={'500'}
+                        _active={{
+                            bg: '#0F4C75',
+                            transform: 'scale(0.98)',
+                        }}
+                    >
+                        Atur Lapangan
+                    </Button>
+                </HStack>
             </Center>
         </Box>
     )
