@@ -89,8 +89,8 @@ function VenueFields() {
                       </Thead>
                       <Tbody>
                         {
-                          list.map(item => (
-                            <Tr>
+                          list.map((item,idx) => (
+                            <Tr key={idx}>
                               <Td>{item.name}</Td>
                               <Td>{item.type.name}</Td>
                               <Td>

@@ -52,8 +52,8 @@ function FieldEditModal({ onClose, onSubmit, field }: Props) {
                                 <Text w={"50%"} fontSize={'16px'} fontWeight='600' color='#1B262C'>Tipe Lapangan</Text>
                                 <Select isRequired {...register("type_id")} >
                                     {
-                                        types.map(type => (
-                                            <option value={type.id} >{type.name}</option>
+                                        types.map((type,idx) => (
+                                            <option key={idx} value={type.id} >{type.name}</option>
                                         ))
                                     }
                                 </Select>
