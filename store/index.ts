@@ -9,6 +9,7 @@ import venue from "./reducers/venue";
 import bookingSlots from "./reducers/bookingSlots";
 import bookingRequests from "./reducers/bookingRequests";
 import bookingList from "./reducers/bookingList";
+import venueFields from "./reducers/venueFields";
 
 
 export const store = configureStore({
@@ -22,7 +23,8 @@ export const store = configureStore({
         venue: venue,
         bookingSlots: bookingSlots,
         bookingRequests: bookingRequests,
-        bookingList: bookingList
+        bookingList: bookingList,
+        venueField: venueFields
     }
 })
 
