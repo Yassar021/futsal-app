@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { LegacyRef, useEffect, useRef } from "react";
 import { Box, Container, Spinner } from "@chakra-ui/react"
 import LayoutUser from "../../layout/LayoutUser"
 import CardVenue from "./cardVenue"
@@ -11,15 +11,16 @@ const Venue = () => {
     const {list, isLoading} = useAppSelector(state => state.venue)
     const dispatch = useAppDispatch()
     const scrollPos = useScroll();
+    const contaierRef = useRef<HTMLDivElement>();
 
     useEffect(() => {
         dispatch(fetchInitialVenueList())
     },[])
 
     useEffect(() => {
-        const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
-
-        if (scrollPos.y === scrollTop) {
+        const { scrollTop, clientHeight, scrollHeight, offsetHeight } = document.documentElement;
+        
+        if (((scrollPos.y + offsetHeight) >= scrollHeight) && !isLoading) {
             dispatch(fetchVenueNextList());
         }
 
@@ -27,7 +28,7 @@ const Venue = () => {
     
     return(
         <LayoutUser pageTitle={'Venue'}>
-            <Container maxW='6xl'>
+            <Container ref={contaierRef} maxW='6xl'>
                 {
                     list.map((vanue,key) => (
                         <CardVenue key={vanue.id} {...vanue} />

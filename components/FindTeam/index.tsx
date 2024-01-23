@@ -6,7 +6,7 @@ import { RootState } from "../../store";
 import React, { LegacyRef, useEffect, useRef, useState } from "react";
 import { getAvailableTeams } from "../../services/API/team";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { hasEnded, initialLoad, nextPage } from "../../store/reducers/findTeams";
+import { fetchInitialTeamList, fetchNextTeamList } from "../../store/reducers/findTeams";
 import useScroll from "../../utils/useScroll";
 import { TeamInfo } from "../../types/user";
 import ChallengeRequestModal from "./ChallengeRequestModal";
@@ -22,18 +22,6 @@ const FindTeam = () => {
   const dispatch = useAppDispatch();
   const scrollPos = useScroll();
   const alert = useAlert();
-
-  const fetchData = () => {
-    if (isEnd || isLoading) {
-      return
-    }
-    getAvailableTeams({ page: page + 1, size: 3 }).then((data) => {
-      dispatch(nextPage(data.data));
-      if (data.next_page_url) {
-        dispatch(hasEnded())
-      }
-    })
-  }
 
   const handleOpenRequestModal = (team: TeamInfo) => {
     setSelectedTeam(team);
@@ -55,16 +43,14 @@ const FindTeam = () => {
   }
 
   useEffect(() => {
-    getAvailableTeams({ page: 1, size: 3 }).then(data => {
-      dispatch(initialLoad(data.data));
-    })
-  }, [])
+    dispatch(fetchInitialTeamList())
+  },[])
 
   useEffect(() => {
-    const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
+    const { scrollHeight, offsetHeight } = document.documentElement;
 
-    if (scrollPos.y === scrollTop) {
-      fetchData()
+    if (((scrollPos.y + offsetHeight) >= scrollHeight) && !isLoading) {
+      dispatch(fetchNextTeamList())
     }
 
   }, [scrollPos.y])

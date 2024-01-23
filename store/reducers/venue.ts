@@ -67,6 +67,7 @@ const venueSlice = createSlice({
         .addCase(fetchVenueNextList.fulfilled, (state,action) => {
             state.isLoading = false;
             if (action.payload) {
+                state.page = action.payload.current_page
                 state.list = [
                     ...state.list,
                     ...action.payload.data

@@ -20,9 +20,9 @@ const Schedule = () => {
     },[])
 
     useEffect(() => {
-        const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
+        const { scrollHeight, offsetHeight } = document.documentElement;
 
-        if (scrollPos.y === scrollTop) {
+        if (((scrollPos.y + offsetHeight) >= scrollHeight) && !isLoading) {
             fetchData()
         }
 
