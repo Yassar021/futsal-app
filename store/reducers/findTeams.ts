@@ -1,5 +1,7 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { TeamInfo } from "../../types/user";
+import { RootState } from "..";
+import { getAvailableTeams } from "../../services/API/team";
 
 type FindTeamState = {
     list: TeamInfo[];
@@ -15,27 +17,65 @@ const initialState: FindTeamState = {
     isLoading: false
 }
 
+export const fetchInitialTeamList = createAsyncThunk("fetch/team/list",(arg,{getState}) => {
+    const response = getAvailableTeams({
+        page: 1,
+        size: 10
+    })
+
+    return response;
+})
+
+export const fetchNextTeamList = createAsyncThunk("fetch/team/list/next", (arg, {getState}) => {
+    const state = getState() as RootState;
+
+    if (state.findTeams.isEnd) {
+        return;
+    }
+
+    const response = getAvailableTeams({
+        page: state.findTeams.page + 1,
+        size: 10
+    })
+
+    return response;
+})
+
 export const findTeamSlice = createSlice({
     name: "findTeam",
     initialState,
-    reducers: {
-        initialLoad: (state, action: PayloadAction<TeamInfo[]>) => {
-            state.list = action.payload;
-            state.page = 1;
+    reducers: {},
+    extraReducers: (builder) => {
+        builder
+        .addCase(fetchInitialTeamList.pending, (state) => {
+            state.isLoading = true;
+            state.list = [];
             state.isEnd = false;
-        },
-        nextPage: (state, action: PayloadAction<TeamInfo[]>) => {
-            if(!state.isEnd){
-                state.page = state.page + 1;
-                state.list = [...state.list, ...action.payload];
+            state.page = 1
+        })
+        .addCase(fetchInitialTeamList.fulfilled, (state,action) => {
+            state.isLoading = false;
+            state.list = action.payload.data
+        })
+        .addCase(fetchNextTeamList.pending,(state) => {
+            state.isLoading = true;
+        })
+        .addCase(fetchNextTeamList.fulfilled, (state,action) => {
+            state.isLoading = false;
+            if (action.payload) {
+                state.page = action.payload.current_page,
+                state.list = [
+                    ...state.list,
+                    ...action.payload.data
+                ]
+                if (action.payload.next_page_url === null) {
+                    state.isEnd = true;
+                }
             }
-        },
-        hasEnded: (state) => {
-            state.isEnd = true;
-        }
+        })
     }
 });
 
-export const { initialLoad, nextPage, hasEnded } = findTeamSlice.actions;
+export const {  } = findTeamSlice.actions;
 
 export default findTeamSlice.reducer;

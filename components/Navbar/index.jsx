@@ -12,10 +12,14 @@ import NextLink from "next/link";
 import { useLogout } from "../../services/AuthProvider/hooks";
 import { useRouter } from "next/router";
 import { useCallback, useEffect } from "react";
+import useNotification from "../../utils/useNotification"
+import { BellIcon } from "@chakra-ui/icons"
 
 const Navbar = () => {
   const logout = useLogout();
   const router = useRouter();
+
+    const { hasNotification } = useNotification()
 
   const isActive = useCallback(
     (path) => {
@@ -55,8 +59,14 @@ const Navbar = () => {
                   fontWeight="500"
                   color={isActive("/Inbox") ? "#1B262C" : "#A0A8B1"}
                 >
-                  Inbox
+                  
+                                    Inbox 
+                                    {
+                                        hasNotification && <BellIcon color={"red"} />
+                                    }
+                                
                 </Text>
+                                
               </Link>
               <Link as={NextLink} href="/FindTeam">
                 <Text
