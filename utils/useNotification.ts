@@ -6,6 +6,7 @@ import { AccountType, TeamInfo } from "../types/user";
 
 const useNotification = () => {
     const [hasNotification,setHasNotification] = useState(false);
+    const [isFetching,setFetching] = useState(false);
 
     const team: TeamInfo | null = useAppSelector((state) => {
         if (state.account.userInfo?.type === AccountType.TEAM) {
@@ -15,23 +16,23 @@ const useNotification = () => {
     })
 
     const fetchNotification = async () => {
+        if (isFetching) {
+            return;
+        }
+
         if (team) {
+            setFetching(true)
             await getUnreadNotification(team.id.toString())
             .then(res => {
                 setHasNotification(res.length > 0)
             })
+            setFetching(false)
+            setTimeout(fetchNotification,6000)
         }
     }
 
     useEffect(() => {
         fetchNotification()
-        const interval = setInterval(() => {
-            fetchNotification()
-        },5000)
-
-        return () => {
-            clearInterval(interval);
-        }
     });
 
     return {
