@@ -39,7 +39,7 @@ const AuthProvider = ({ children }) => {
             setLogged(true)
             dispatch(setAccount({
                 type: type,
-                data: type === AccountType.TEAM ? result.data.team : result.data.team
+                data: type === AccountType.TEAM ? result.data.team : result.data.venue
             }))
         }
 
