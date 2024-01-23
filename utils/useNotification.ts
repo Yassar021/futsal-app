@@ -1,0 +1,42 @@
+import { useEffect, useState } from "react";
+import { getUnreadNotification } from "../services/API/notification";
+import { useSelector } from "react-redux";
+import { useAppSelector } from "../store/hooks";
+import { AccountType, TeamInfo } from "../types/user";
+
+const useNotification = () => {
+    const [hasNotification,setHasNotification] = useState(false);
+
+    const team: TeamInfo | null = useAppSelector((state) => {
+        if (state.account.userInfo?.type === AccountType.TEAM) {
+            return state.account.userInfo.data
+        }
+        return null 
+    })
+
+    const fetchNotification = async () => {
+        if (team) {
+            await getUnreadNotification(team.id.toString())
+            .then(res => {
+                setHasNotification(res.length > 0)
+            })
+        }
+    }
+
+    useEffect(() => {
+        fetchNotification()
+        const interval = setInterval(() => {
+            fetchNotification()
+        },5000)
+
+        return () => {
+            clearInterval(interval);
+        }
+    });
+
+    return {
+        hasNotification
+    }
+}
+
+export default useNotification;
