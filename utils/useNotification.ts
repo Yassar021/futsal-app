@@ -27,12 +27,18 @@ const useNotification = () => {
                 setHasNotification(res.length > 0)
             })
             setFetching(false)
-            setTimeout(fetchNotification,6000)
         }
     }
 
     useEffect(() => {
         fetchNotification()
+        const interval = setInterval(() => {
+            fetchNotification()
+        },5000)
+
+        return () => {
+            clearInterval(interval);
+        }
     });
 
     return {
