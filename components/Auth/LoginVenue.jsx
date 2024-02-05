@@ -33,7 +33,7 @@ const LoginVenue = () => {
     return(
         <LayoutLogin pageTitle={"Login"}>
             <Flex direction={'column'} gap='40px' alignItems={'center'}>
-                <Text fontSize={{base:'24px',sm:'32px',md:'40px'}} fontWeight='700' color={'#000'}>MATCHMAKING FUTSAL</Text>
+                <Text fontSize={{base:'24px',sm:'32px',md:'40px'}} fontWeight='700' color={'#000'}>Bulukumba Futsal</Text>
 
                 
                 <Image maxWidth={'200px'} height={'200px'} src='/bg-login.png' alt='bg-login' />
