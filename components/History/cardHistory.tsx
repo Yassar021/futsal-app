@@ -77,7 +77,7 @@ const CardHistory = ({ match }: Props) => {
             <Image
               width={"100px"}
               height="100px"
-              src="fcb-team.png"
+              src={home_team.profile_picture}
               alt="FCB"
             />
             <Box my="auto">
@@ -154,7 +154,7 @@ const CardHistory = ({ match }: Props) => {
             <Image
               width={"100px"}
               height="100px"
-              src="rma-team.png"
+              src={away_team.profile_picture}
               alt="rma"
             />
             <Box my="auto">
