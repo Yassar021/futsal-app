@@ -152,7 +152,7 @@ function EditForm() {
           control={control}
           name='profil_picture'
           render={({field}) => (
-            <Input type="file" onChange={(e) => {
+            <Input accept='image/*' type="file" onChange={(e) => {
               field.onChange(e.target.files[0])
             }} />
           )}
